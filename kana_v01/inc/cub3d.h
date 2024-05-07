@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 10:17:31 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/07 10:25:14 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@
 # define KEY_UP  	65362
 # define KEY_LEFT  	65361
 # define KEY_RIGHT 	65363
-# define KEY_DOWN  	65364	
+# define KEY_DOWN  	65364
+# define FOV		(60 * (PI / 180))
+# define PI			3.14159265358979323846
 
 typedef struct s_image
 {
@@ -51,6 +53,21 @@ typedef struct s_image
 	int		x;
 	int		y;
 }	t_image;
+
+
+typedef struct s_ray
+{
+	bool	hit_wall;
+	int		c_col;
+	int		cam_x;
+	int		wall_dist;
+	int		ray_angle;
+	int		ray_step;
+	int		ray_x;
+	int		ray_y;
+	int		eye_x;
+	int		eye_y;
+}	t_ray;	
 
 typedef struct s_game
 {

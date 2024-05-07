@@ -6,19 +6,18 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 10:25:14 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:02:28 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
 
@@ -54,48 +53,44 @@ typedef struct s_image
 	int		y;
 }	t_image;
 
-
-typedef struct s_ray
-{
-	bool	hit_wall;
-	int		c_col;
-	int		cam_x;
-	int		wall_dist;
-	int		ray_angle;
-	int		ray_step;
-	int		ray_x;
-	int		ray_y;
-	int		eye_x;
-	int		eye_y;
-}	t_ray;	
-
 typedef struct s_game
 {
 	int		fd;
 	int		map_height;
 	int		map_width;
 	int		player_counter;
-	int		collectable_counter;
-	int		move_counter;
 	int		exit_counter;
-	int		x_axis;
-	int		y_axis;
+	int		player_x;
+	int		player_y;
 	int		exit_code;
 
 	char	**map;
 
 	t_image	floor;
 	t_image	wall;
-	t_image	player_down;
-	t_image	player_up;
-	t_image	player_right;
-	t_image	player_left;
+	t_image	player;
 	t_image	exit;
 	t_image	wine;
-	t_image	enemy;
 
 	void	*mlx_ptr;
 	void	*win_ptr;
+
+	bool	hit_wall;
+	int		current_column;
+	double	wall_dist;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_game;
 
 #endif

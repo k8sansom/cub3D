@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 10:17:31 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/07 11:56:47 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@
 # define KEY_RIGHT 	65363
 # define KEY_DOWN  	65364	
 
+typedef struct s_textures
+{
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	int				*floor;
+	int				*ceiling;
+	size_t			hex_floor;
+	size_t			hex_ceiling;
+	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+}	t_textures;
+
 typedef struct s_image
 {
 	void	*xpm_ptr;
@@ -52,33 +70,35 @@ typedef struct s_image
 	int		y;
 }	t_image;
 
+typedef struct s_player
+{
+	char	dir;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		has_moved;
+	int		move_x;
+	int		move_y;
+	int		rotate;
+}	t_player;
+
 typedef struct s_game
 {
-	int		fd;
-	int		map_height;
-	int		map_width;
-	int		player_counter;
-	int		collectable_counter;
-	int		move_counter;
-	int		exit_counter;
-	int		x_axis;
-	int		y_axis;
-	int		exit_code;
+	int			fd;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			win_height;
+	int			win_width;
+	int			map_height;
+	int			map_width;
 
-	char	**map;
+	char		**map;
 
-	t_image	floor;
-	t_image	wall;
-	t_image	player_down;
-	t_image	player_up;
-	t_image	player_right;
-	t_image	player_left;
-	t_image	exit;
-	t_image	wine;
-	t_image	enemy;
-
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_textures	*textures;
+	t_player	*player;
 }	t_game;
 
 #endif

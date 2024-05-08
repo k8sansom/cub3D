@@ -18,14 +18,15 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_fprintf(1, "Error: no map name provided\n");
+		ft_fprintf(1, "Error: no map provided\n");
 		return (1); 
 	}
 	init_game(&game);
-	parse_map(&game, av[1]);
+	parse_file(&game, av[1]);
 	int i = -1;
-	while (++i < game.map_height)
-		ft_printf("%s", game.map[i]);
+	while (++i < game.cub_height)
+		ft_printf("%s", game.cub_file[i]);
+	free_arr(game.cub_file);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);
 	// game.mlx_ptr = mlx_init();

@@ -16,11 +16,13 @@
 //# include "../mlx/mlx.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
+#include <string.h>
 # include <stdlib.h>
 //# include "../mlx/mlx.h"
 //# include "../mlx/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
+#include <sys/errno.h>
 
 # define IMG_W	32
 # define IMG_H	32
@@ -91,8 +93,10 @@ typedef struct s_game
 	int			win_height;
 	int			win_width;
 	int			map_height;
+	int			cub_height;
 	//int			map_width;
 
+	char		**cub_file;
 	char		**map;
 
 	t_textures	textures;
@@ -104,10 +108,10 @@ typedef struct s_game
 void	init_game(t_game *game);
 
 //parsing
-void	parse_map(t_game *game, char *map);
-void 	read_map(t_game *game, char *map);
+void	parse_file(t_game *game, char *map);
+void 	read_cub(t_game *game, char *map);
 
 //errors
 void	full_exit(char *s, t_game *game, int exit_code);
-
+void	free_arr(char **arr);
 #endif

@@ -60,7 +60,8 @@ SRCS = 	./src/ft_atoi.c \
 		./src/ft_fprintf.c \
 		./src/ft_fprintf_csid.c \
 		./src/ft_fprintf_pux.c \
-		src/ft_strnchr.c
+		src/ft_strnchr.c \
+		src/ft_isdir.c
 		
 OBJS = $(SRCS:.c=.o)
 

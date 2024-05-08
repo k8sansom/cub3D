@@ -12,31 +12,47 @@
 
 #include "../inc/cub3d.h"
 
-static bool	is_dir(char *map)
+static int	adding_rows(t_game *game, char *row)
 {
-	int		fd;
+	char	**temp;
+	int		i;
 
-	fd = open(map, O_DIRECTORY);
-	if (fd >= 0)
+	i = 0;
+	if (!row)
+		return (0);
+	game->map_height++;
+	temp = (char **)malloc(sizeof(char *) * (game->map_height + 1));
+	if (!temp)
+		full_exit("Error: allocating memory for map", game, game->exit_code++);
+	temp[game->map_height] = NULL;
+	while (i < (game->map_height - 1))
 	{
-		close (fd);
-		return (true);
+		temp[i] = game->map[i];
+		i++;
 	}
-	return (false);
+	temp[i] = row;
+	if (game->map)
+		free(game->map);
+	game->map = temp;
+	return (1);
 }
+
 void read_map(t_game *game, char *map)
 {
-	if (is_dir(map))
-		full_exit("Error: file is a directory", game);
+	char	*row;
+
+	row = NULL;
+	if (ft_isdir(map))
+		full_exit("Error: file is a directory", game, STDERR_FILENO);
 	game->fd = open(map, O_RDONLY);
 	if (game->fd < 0)
-		ft_exit("Error: reading map", game, game->exit_code++);
+		full_exit("Error: reading map", game, STDERR_FILENO);
 	while (1)
 	{
 		row = get_next_line(game->fd);
-		if (!ft_adding_rows(game, row))
+		if (!adding_rows(game, row))
 			break ;
 	}
 	close(game->fd);
-	game->map_width = ft_get_width(game->map[0]);
+	//game->map_width = ft_get_width(game->map[0]);
 }

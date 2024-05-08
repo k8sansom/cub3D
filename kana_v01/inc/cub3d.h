@@ -93,7 +93,7 @@ typedef struct s_game
 	int			win_height;
 	int			win_width;
 	int			map_height;
-	int			map_width;
+	//int			map_width;
 
 	char		**map;
 

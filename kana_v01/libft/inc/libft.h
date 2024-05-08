@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <stdarg.h>
+#include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -106,4 +107,7 @@ int		ft_print_int_fd(int fd, int n);
 void	ft_putnbr_fd(int fd, int n);
 int		ft_print_str_fd(int fd, const char *str);
 int		ft_print_char_fd(int fd, char c);
+
+char	*get_next_line(int fd);
+bool	ft_isdir(char *map);
 #endif

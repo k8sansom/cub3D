@@ -19,11 +19,11 @@ static int	adding_rows(t_game *game, char *row)
 
 	i = 0;
 	if (!row)
-		return (0);
+		return (1);
 	game->map_height++;
 	temp = (char **)malloc(sizeof(char *) * (game->map_height + 1));
 	if (!temp)
-		full_exit("Error: allocating memory for map", game, game->exit_code++);
+		full_exit("Error: allocating memory for map", game, STDERR_FILENO);
 	temp[game->map_height] = NULL;
 	while (i < (game->map_height - 1))
 	{
@@ -34,7 +34,7 @@ static int	adding_rows(t_game *game, char *row)
 	if (game->map)
 		free(game->map);
 	game->map = temp;
-	return (1);
+	return (0);
 }
 
 void read_map(t_game *game, char *map)
@@ -50,7 +50,7 @@ void read_map(t_game *game, char *map)
 	while (1)
 	{
 		row = get_next_line(game->fd);
-		if (!adding_rows(game, row))
+		if (adding_rows(game, row))
 			break ;
 	}
 	close(game->fd);

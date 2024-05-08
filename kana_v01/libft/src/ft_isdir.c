@@ -1,3 +1,5 @@
+#include "../inc/libft.h"
+
 bool	ft_isdir(char *map)
 {
 	int		fd;

@@ -13,12 +13,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx/mlx.h"
+//# include "../mlx/mlx.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
+//# include "../mlx/mlx.h"
+//# include "../mlx/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
 
@@ -45,6 +45,11 @@
 # define KEY_RIGHT 	65363
 # define KEY_DOWN  	65364	
 
+typedef struct s_ray
+{
+	//something here
+}	t_ray;
+
 typedef struct s_textures
 {
 	char			*north;
@@ -62,13 +67,6 @@ typedef struct s_textures
 	int				x;
 	int				y;
 }	t_textures;
-
-typedef struct s_image
-{
-	void	*xpm_ptr;
-	int		x;
-	int		y;
-}	t_image;
 
 typedef struct s_player
 {
@@ -88,8 +86,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	int			fd;
-	void		*mlx_ptr;
-	void		*win_ptr;
+	// void		*mlx_ptr;
+	// void		*win_ptr;
 	int			win_height;
 	int			win_width;
 	int			map_height;
@@ -97,8 +95,19 @@ typedef struct s_game
 
 	char		**map;
 
-	t_textures	*textures;
-	t_player	*player;
+	t_textures	textures;
+	t_player	player;
+	t_ray		ray;
 }	t_game;
+
+//init
+void	init_game(t_game *game);
+
+//parsing
+void	parse_map(t_game *game, char *map);
+void 	read_map(t_game *game, char *map);
+
+//errors
+void	full_exit(char *s, t_game *game, int exit_code);
 
 #endif

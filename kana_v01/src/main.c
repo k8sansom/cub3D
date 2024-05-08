@@ -23,6 +23,9 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_map(&game, av[1]);
+	int i = -1;
+	while (++i < game.map_height)
+		ft_printf("%s", game.map[i]);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);
 	// game.mlx_ptr = mlx_init();

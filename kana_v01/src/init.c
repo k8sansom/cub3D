@@ -36,8 +36,9 @@ static void	init_player(t_player *player)
 void	init_game(t_game *game)
 {
 	ft_memset(game, 0, sizeof(t_game));
-	init_player(game->player);
-	init_textures(game->textures);
+	init_player(&game->player);
+	init_textures(&game->textures);
+	//init_ray(game->ray);
 	game->win_height = 720;
 	game->win_width = 960;
 }

@@ -23,9 +23,10 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_file(&game, av[1]);
-	int i = -1;
-	while (++i < game.cub_height)
-		ft_printf("%s", game.cub_file[i]);
+	ft_printf("%s", game.textures.north);
+	ft_printf("%s", game.textures.south);
+	ft_printf("%s", game.textures.east);
+	ft_printf("%s", game.textures.west);
 	free_arr(game.cub_file);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);

@@ -114,4 +114,7 @@ void 	read_cub(t_game *game, char *map);
 //errors
 void	full_exit(char *s, t_game *game, int exit_code);
 void	free_arr(char **arr);
+
+//textures
+void	read_textures(t_game *game);
 #endif

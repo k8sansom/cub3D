@@ -6,29 +6,28 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/07 12:44:02 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:41:47 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	is_wall(int x, int y, t_game *game)
+int	is_wall(t_game *game)
 {
-	if (x < 0 || x >= game->map_width || y < 0 || y >= game->map_height)
+	if (game->ray_pos_x < 0 || game->ray_pos_x >= game->map_width
+		|| game->ray_pos_y < 0 || game->ray_pos_y >= game->map_height)
 		return (1);
-	return (game->map[y][x] == '1');
+	return (game->map[(int)game->ray_pos_y][(int)game->ray_pos_x] == '1');
 }
 /**
- * @brief initializing variables needed for casting
- *  a single ray form players current position.
+ * @brief sets up a ray based on its position across the screen.
+ * Adjusts the ray's direction to create a field of view. 
+ * Calculates how far the ray needs to travel to cross a grid line.
  * @param camera_x used to calculate x-coordinate in the camera's view,
  * if its negative the ray points to the left, if positive - to the right.
- * @param dir_x and ->
- * @param dir_y is the direction the player is facing.
- * @param plane_x and ->
- * @param plane_y is the vector that is perpendicular to the direction;
- * @param delta_dist_x and ->
- * @param delta_dist_y is the distance that the ray needs to travel along
+ * @param dir is the direction the player is facing.
+ * @param plane is the vector that is perpendicular to the direction;
+ * @param delta_dist is the distance that the ray needs to travel along
  * one of the axes to the next grid line;
  * the player is facing;
 */
@@ -66,45 +65,74 @@ static void	init_ray(t_game *game, int current_x)
 	else
 		game->delta_dist_y = fabs(1 / game->ray_dir_y);
 }
-
+/**
+ * @brief The ray travels through the game field, using delta_distances calculated
+ * int init ray. When the ray hits the wall we calculate the perpendicular distance
+ * to it from the ray's initial position.
+ * @param side_dist is the distance the ray needs to travel to reach the
+ * next x or y grid line from its current position.
+ * @param step is a direction indicator. They increase if the direction is 
+ * right or up and decreases if the direction is left or down.
+ * @param wall_dist is the perpendicular distance from the player to the wall.
+*/
 static void	perform_dda(t_game *game)
 {
-	double	side_dist_x;
-	double	side_dist_y;
-	int		step_x;
-	int		step_y;
-
+	bool	vertical_wall;
+//set the ray's initial position as it will be advancing towards walls
+	game->ray_pos_x = game->player_x;
+	game->ray_pos_y = game->player_y;
 	if (game->ray_dir_x < 0)
-		step_x = -1;
+	{
+		game->step_x = -1;
+		game->side_dist_x = (game->ray_pos_x - floor(game->ray_pos_x)) * game->delta_dist_x;
+	}
 	else
-		step_x = 1;
-
+	{
+		game->step_x = 1;
+		game->side_dist_x = (ceil(game->ray_pos_x) - game->ray_pos_x) * game->delta_dist_x;
+	}
 	if (game->ray_dir_y < 0)
-		step_y = -1;
+	{
+		game->step_y = -1;
+		game->side_dist_y = (game->ray_pos_y - floor(game->ray_pos_y)) * game->delta_dist_y;
+	}
 	else
-		step_y = 1;
+	{
+		game->step_y = 1;
+		game->side_dist_y = (ceil(game->ray_pos_y) - game->ray_pos_y) * game->delta_dist_y;
+	}
 	game->hit_wall = false;
 	while (!game->hit_wall)
 	{
-		if (side_dist_x < side_dist_y)
+		/*First advances to the axis, where the ray will hit the
+		grid line first.
+		Increments the side distance by delta (distance to the NEXT line)
+		each time.*/
+		if (game->side_dist_x < game->side_dist_y)
 		{
-			side_dist_x += game->delta_dist_x;
-			game->player_x += step_x;
-			game->current_column = 0;
+			game->side_dist_x += game->delta_dist_x;
+			game->ray_pos_x += game->step_x;
+			vertical_wall = true;
 		}
 		else
 		{
-			side_dist_y += game->delta_dist_y;
-			game->player_y += step_y;
-			game->current_column = 1;
+			game->side_dist_y += game->delta_dist_y;
+			game->ray_pos_y += game->step_y;
+			vertical_wall = false;
 		}
-		if (is_wall(game->player_x, game->player_y, game))
+		/*Calculates the distance to the wall when it's hit. 
+		Its a perpedicular distance from the player position (the ray's starting
+		point to the wall. )*/
+		
+		if (is_wall(game))
 		{
 			game->hit_wall = true;
-			if (game->current_column == 0)
-				game->wall_dist = (game->player_x - game->player_x + (1 - step_x) / 2) / game->ray_dir_x;
+	// if the ray hits a vertical wall
+			if (vertical_wall)
+				game->wall_dist = fabs((game->ray_pos_x + (game->step_x * 0.5) - game->player_x)  / game->ray_dir_x);
+	// if the ray hits the horizontal wall
 			else
-				game->wall_dist = (game->player_y - game->player_y + (1 - step_y) / 2) / game->ray_dir_y;
+				game->wall_dist = fabs((game->ray_pos_y + (game->step_y * 0.5) - game->player_y) / game->ray_dir_y);
 		}
 	}
 }

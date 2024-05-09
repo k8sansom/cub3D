@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 11:02:28 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:07:52 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_game
 	bool	hit_wall;
 	int		current_column;
 	double	wall_dist;
+	double	ray_pos_x;
+	double	ray_pos_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	delta_dist_x;

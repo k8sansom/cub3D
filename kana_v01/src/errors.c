@@ -6,8 +6,8 @@ void	free_textures(t_textures *textures)
 	free(textures->south);
 	free(textures->west);
 	free(textures->east);
-	free(textures->floor);
-	free(textures->ceiling);
+	//free(textures->floor);
+	//free(textures->ceiling);
 }
 
 void	free_arr(char **arr)

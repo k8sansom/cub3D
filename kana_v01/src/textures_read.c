@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-static void	get_floor(t_game *game, char *str)
+// static void	get_floor(t_game *game, char *str)
 
 void	read_textures(t_game *game)
 {
@@ -10,13 +10,13 @@ void	read_textures(t_game *game)
 	while (i < game->cub_height)
 	{
 		if (ft_strncmp(game->cub_file[i], "NO ", 3) == 0)
-			game->textures.north = game->cub_file[i];
+			game->textures.north = ft_strdup(game->cub_file[i] + 3);
 		else if (ft_strncmp(game->cub_file[i], "SO ", 3) == 0)
-			game->textures.south = game->cub_file[i];
+			game->textures.south = ft_strdup(game->cub_file[i] + 3);
 		else if (ft_strncmp(game->cub_file[i], "WE ", 3) == 0)
-			game->textures.west = game->cub_file[i];
+			game->textures.west = ft_strdup(game->cub_file[i] + 3);
 		else if (ft_strncmp(game->cub_file[i], "EA ", 3) == 0)
-			game->textures.east = game->cub_file[i];
+			game->textures.east = ft_strdup(game->cub_file[i] + 3);
 		// else if (ft_strncmp(game->cub_file[i], "F ", 2) == 0)
 		// 	get_floor(game, game->cub_file[i]);
 		// else if (ft_strncmp(game->cub_file[i], "C ", 2) == 0)

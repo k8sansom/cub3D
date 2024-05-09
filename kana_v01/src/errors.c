@@ -2,12 +2,18 @@
 
 void	free_textures(t_textures *textures)
 {
-	free(textures->north);
-	free(textures->south);
-	free(textures->west);
-	free(textures->east);
-	//free(textures->floor);
-	//free(textures->ceiling);
+	if (textures->north)
+		free(textures->north);
+	if (textures->south)
+		free(textures->south);
+	if (textures->west)
+		free(textures->west);
+	if (textures->east)
+		free(textures->east);
+	if (textures->floor)
+		free(textures->floor);
+	if (textures->ceiling)
+		free(textures->ceiling);
 }
 
 void	free_arr(char **arr)

@@ -1,6 +1,32 @@
 #include "../inc/cub3d.h"
 
-// static void	get_floor(t_game *game, char *str)
+ static int	*get_rgbs(t_game *game, char *str)
+{
+	char	**rgb_arr;
+	int		*rgb;
+	int		i;
+
+	rgb_arr = ft_split(str, ',');
+	i = 0;
+	while(rgb_arr[i])
+		i++;
+	if (i != 3)
+	{
+		free_arr(rgb_arr);
+		full_exit("Error: with color rgb", game, 1);
+	}
+	rgb = malloc(sizeof(int) * 3);
+	if (!rgb)
+	{
+		free_arr(rgb_arr);
+		full_exit("Malloc error", game, 1);
+	}
+	i = -1;
+	while(rgb_arr[++i])
+		rgb[i] = ft_atoi(rgb_arr[i]);
+	free_arr(rgb_arr);
+	return (rgb);
+}
 
 void	read_textures(t_game *game)
 {
@@ -17,10 +43,10 @@ void	read_textures(t_game *game)
 			game->textures.west = ft_strdup(game->cub_file[i] + 3);
 		else if (ft_strncmp(game->cub_file[i], "EA ", 3) == 0)
 			game->textures.east = ft_strdup(game->cub_file[i] + 3);
-		// else if (ft_strncmp(game->cub_file[i], "F ", 2) == 0)
-		// 	get_floor(game, game->cub_file[i]);
-		// else if (ft_strncmp(game->cub_file[i], "C ", 2) == 0)
-		// 	get_ceiling(game, game->cub_file[i]);
+		else if (ft_strncmp(game->cub_file[i], "F ", 2) == 0)
+		 	game->textures.floor = get_rgbs(game, game->cub_file[i] + 2);
+		 else if (ft_strncmp(game->cub_file[i], "C ", 2) == 0)
+		 	game->textures.ceiling = get_rgbs(game, game->cub_file[i] + 2);
 		i++;
 	}
 }

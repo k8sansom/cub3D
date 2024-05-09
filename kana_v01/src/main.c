@@ -27,6 +27,10 @@ int	main(int ac, char **av)
 	ft_printf("%s", game.textures.south);
 	ft_printf("%s", game.textures.east);
 	ft_printf("%s", game.textures.west);
+	for (int i = 0; i < 3; i++)
+		ft_printf("%d\n", game.textures.floor[i]);
+	for (int i = 0; i < 3; i++)
+		ft_printf("%d\n", game.textures.floor[i]);
 	full_exit("all done", &game, 0);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);

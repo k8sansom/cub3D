@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/09 15:41:47 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:25:50 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,17 @@ static void	perform_dda(t_game *game)
 //set the ray's initial position as it will be advancing towards walls
 	game->ray_pos_x = game->player_x;
 	game->ray_pos_y = game->player_y;
+/* game->ray_pos_x - floor(game->ray_pos_x) computes the fractional part of the x-coordinate, 
+its how far the current position is from the leftward nearest grid line.
+Mult. by game->delta_dist_x scales this fractional distance to the map grid.
+floor - rounds down to the nearest integer */
 	if (game->ray_dir_x < 0)
 	{
 		game->step_x = -1;
 		game->side_dist_x = (game->ray_pos_x - floor(game->ray_pos_x)) * game->delta_dist_x;
 	}
+// ceil(game->ray_pos_x) - game->ray_pos_x is how far the curr position is from the next rightward grid line
+// ceil - rounds up to the nearest int
 	else
 	{
 		game->step_x = 1;
@@ -129,10 +135,10 @@ static void	perform_dda(t_game *game)
 			game->hit_wall = true;
 	// if the ray hits a vertical wall
 			if (vertical_wall)
-				game->wall_dist = fabs((game->ray_pos_x + (game->step_x * 0.5) - game->player_x)  / game->ray_dir_x);
+				game->wall_dist = fabs((game->ray_pos_x - game->player_x) / game->ray_dir_x);
 	// if the ray hits the horizontal wall
 			else
-				game->wall_dist = fabs((game->ray_pos_y + (game->step_y * 0.5) - game->player_y) / game->ray_dir_y);
+				game->wall_dist = fabs((game->ray_pos_y - game->player_y) / game->ray_dir_y);
 		}
 	}
 }
@@ -154,8 +160,16 @@ void	raycasting(t_game *game)
 void	draw_vertical_line(int x, double wall_dist, t_game *game)
 {
 	int	line_height;
-
+	int	draw_start;
+	int	draw_end;
+	
 	line_height = (int)(game->map_height / wall_dist);
+
+	draw_start = (game->map_height - line_height) / 2;
+	draw_end  = draw_start + line_height;
+
+	if (draw_start < 0) draw_start = 0;
+	if (draw_end >= game->map_height) draw_end = game->map_height - 1;
 	
 }
 

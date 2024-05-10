@@ -6,11 +6,16 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 11:13:50 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:45:34 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	init_ray(t_ray *ray)
+{
+	ft_memset(ray, 0, sizeof(t_ray));
+}
 
 static void	init_textures(t_textures *textures)
 {
@@ -38,7 +43,7 @@ void	init_game(t_game *game)
 	ft_memset(game, 0, sizeof(t_game));
 	init_player(&game->player);
 	init_textures(&game->textures);
-	//init_ray(game->ray);
+	init_ray(&game->ray);
 	game->win_height = 720;
 	game->win_width = 960;
 }

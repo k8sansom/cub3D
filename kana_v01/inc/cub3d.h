@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 12:38:54 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:00:51 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,7 @@
 # define IMG_W	32
 # define IMG_H	32
 
-# define WALL_XPM			"assets/wall.xpm"
-# define FLOOR_XPM			"assets/floor.xpm"
-# define WINE_XPM			"assets/wine.xpm"
-# define EXIT_XPM			"assets/toilet.xpm"
-# define PLAYER_DOWN_XPM	"assets/player_down.xpm"
-# define PLAYER_UP_XPM		"assets/player_up.xpm"
-# define PLAYER_RIGHT_XPM	"assets/player_right.xpm"
-# define PLAYER_LEFT_XPM	"assets/player_left.xpm"
-# define ENEMY_XPM			"assets/enemy.xpm"
+# define WHITESPACE "	 /\r/\n/\f"
 
 # define KEY_W		119
 # define KEY_A		97

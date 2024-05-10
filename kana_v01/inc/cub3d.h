@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 11:56:47 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:38:54 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 //# include "../mlx/mlx.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
-#include <string.h>
+# include <string.h>
 # include <stdlib.h>
 //# include "../mlx/mlx.h"
 //# include "../mlx/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
-#include <sys/errno.h>
+# include <sys/errno.h>
 
 # define IMG_W	32
 # define IMG_H	32
@@ -49,7 +49,19 @@
 
 typedef struct s_ray
 {
-	//something here
+	bool	hit_wall;
+	int		current_column;
+	double	wall_dist;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
 }	t_ray;
 
 typedef struct s_textures
@@ -94,7 +106,7 @@ typedef struct s_game
 	int			win_width;
 	int			map_height;
 	int			cub_height;
-	//int			map_width;
+	int			map_width;
 
 	char		**cub_file;
 	char		**map;
@@ -117,4 +129,5 @@ void	free_arr(char **arr);
 
 //textures
 void	read_textures(t_game *game);
+
 #endif

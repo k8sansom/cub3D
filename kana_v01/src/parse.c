@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 12:39:49 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:46:49 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
  	read_textures(game);
-//	read_map(game);
+	read_map(game);	
 // 	ft_parse_path(&game);
 }

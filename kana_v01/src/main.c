@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:19:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 12:40:08 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:12:09 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,19 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_file(&game, av[1]);
+	ft_printf("game textures:\n");
 	ft_printf("%s", game.textures.north);
 	ft_printf("%s", game.textures.south);
 	ft_printf("%s", game.textures.east);
 	ft_printf("%s", game.textures.west);
+	ft_printf("rgbs:\n");
 	for (int i = 0; i < 3; i++)
 		ft_printf("%d\n", game.textures.floor[i]);
 	for (int i = 0; i < 3; i++)
-		ft_printf("%d\n", game.textures.floor[i]);
+		ft_printf("%d\n", game.textures.ceiling[i]);
+	ft_printf("game map:\n");
+	for (int i = 0; i < game.map_height; i++)
+		ft_printf("%s", game.map[i]);
 	full_exit("all done", &game, 0);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:48:52 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 14:26:52 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:30:14 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,18 @@
 
 void	copy_map(t_game *game, int start)
 {
+	int	i;
+
+	i = 0;
 	game->map = malloc(sizeof(char *) * game->cub_height - start);
 	while (game->cub_file[start])
 	{
-		
+		game->map[i] = ft_strdup(game->cub_file[start]);
+		i++;
+		start++;
 	}
+	game->map[i] = ft_strdup("\0");
+	game->map_height = i;
 }
 
 void	read_map(t_game *game)
@@ -55,16 +62,17 @@ void	read_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (ft_strncmp(game->cub_file[i], "NO ", 3) == 0 ||\
-			ft_strncmp(game->cub_file[i], "SO ", 3) == 0 ||\
-			ft_strncmp(game->cub_file[i], "WE ", 3) == 0 ||\
-			ft_strncmp(game->cub_file[i], "EA ", 3) == 0 ||\
-			ft_strncmp(game->cub_file[i], "F ", 2) == 0 ||\
-			ft_strncmp(game->cub_file[i], "C ", 2) == 0)
-			i++;
 	while (game->cub_file[i])
 	{
 		j = 0;
+		while (!ft_strncmp(game->cub_file[i], "NO ", 3) || !ft_strncmp(game->cub_file[i]\
+				, "SO ", 3) || !ft_strncmp(game->cub_file[i], "WE ", 3) || !ft_strncmp\
+				(game->cub_file[i], "EA ", 3) || !ft_strncmp(game->cub_file[i], "F ", 2) \
+				|| !ft_strncmp(game->cub_file[i], "C ", 2))
+		{
+			i++;
+			continue ;
+		}
 		while (game->cub_file[i][j] && ft_strchr(WHITESPACE, game->cub_file[i][j]))
 			j++;
 		if (game->cub_file[i][j] == '\0')
@@ -72,6 +80,7 @@ void	read_map(t_game *game)
 		else
 		{
 			copy_map(game, i);
+			break ;
 		}
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
+/*   Updated: 2024/05/10 15:27:34 by ksansom          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	free_textures(t_textures *textures)
@@ -28,6 +40,7 @@ void	free_arr(char **arr)
 	}
 	free(arr);
 }
+
 void	full_exit(char *s, t_game *game, int exit_code)
 {
 	// if (game->win_ptr)

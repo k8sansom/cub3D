@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/10 13:34:44 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:42:51 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	init_ray(t_game *game, int current_x)
  * @param step is a direction indicator. They increase if the direction is 
  * right or up and decreases if the direction is left or down.
  * @note ray.pos_x - floor(ray.pos_x) computes the fractional part of the x-coordinate, it's how far the current position is from the leftward nearest grid line.
- * @note Multiplied by game->delta_dist_x scales this fractional distance to the map grid.
+ * @note Multiplied by delta_dist_x scales this fractional distance to the map grid.
  * @note ceil(ray.pos_x) - ray.pos_x is how far the curr position is from the next rightward grid line.
  * @note Floor - rounds down to the nearest integer.
  * @note Ceil - rounds up to the nearest integer.

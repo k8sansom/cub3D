@@ -17,7 +17,7 @@ SRCS =	src/errors.c \
 		src/main.c \
 		src/map.c \
 		src/parse.c \
-		src/textures_read.c
+		src/textures.c
 
 OBJS = $(SRCS:.c=.o)
 

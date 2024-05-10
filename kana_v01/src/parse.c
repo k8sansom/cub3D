@@ -61,5 +61,6 @@ void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
  	read_textures(game);
+//	read_map(game);
 // 	ft_parse_path(&game);
 }

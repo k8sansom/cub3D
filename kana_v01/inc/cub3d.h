@@ -100,7 +100,7 @@ typedef struct s_game
 	int			cub_height;
 	int			map_width;
 
-	char		**cub_file;
+	char		**cub;
 	char		**map;
 
 	t_textures	textures;
@@ -121,6 +121,7 @@ void	free_arr(char **arr);
 
 //textures
 void	read_textures(t_game *game);
+void	check_textures(t_game *game);
 
 //map
 void	read_map(t_game *game);

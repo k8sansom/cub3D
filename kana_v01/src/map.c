@@ -46,9 +46,9 @@ void	copy_map(t_game *game, int start)
 
 	i = 0;
 	game->map = malloc(sizeof(char *) * game->cub_height - start);
-	while (game->cub_file[start])
+	while (game->cub[start])
 	{
-		game->map[i] = ft_strdup(game->cub_file[start]);
+		game->map[i] = ft_strdup(game->cub[start]);
 		i++;
 		start++;
 	}
@@ -62,20 +62,20 @@ void	read_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (game->cub_file[i])
+	while (game->cub[i])
 	{
-		while (!ft_strncmp(game->cub_file[i], "NO ", 3) || !ft_strncmp(game->cub_file[i]\
-				, "SO ", 3) || !ft_strncmp(game->cub_file[i], "WE ", 3) || !ft_strncmp\
-				(game->cub_file[i], "EA ", 3) || !ft_strncmp(game->cub_file[i], "F ", 2) \
-				|| !ft_strncmp(game->cub_file[i], "C ", 2))
+		while (!ft_strncmp(game->cub[i], "NO ", 3) || !ft_strncmp(game->cub[i], \
+				"SO ", 3) || !ft_strncmp(game->cub[i], "WE ", 3) || !ft_strncmp\
+				(game->cub[i], "EA ", 3) || !ft_strncmp(game->cub[i], "F ", 2) \
+				|| !ft_strncmp(game->cub[i], "C ", 2))
 		{
 			i++;
 			continue ;
 		}
 		j = 0;
-		while (game->cub_file[i][j] && ft_strchr(WHITESPACE, game->cub_file[i][j]))
+		while (game->cub[i][j] && ft_strchr(WHITESPACE, game->cub[i][j]))
 			j++;
-		if (game->cub_file[i][j] == '\0')
+		if (game->cub[i][j] == '\0')
 			i++;
 		else
 		{

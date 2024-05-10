@@ -27,13 +27,13 @@ static int	adding_rows(t_game *game, char *row)
 	temp[game->cub_height] = NULL;
 	while (i < (game->cub_height - 1))
 	{
-		temp[i] = game->cub_file[i];
+		temp[i] = game->cub[i];
 		i++;
 	}
 	temp[i] = row;
-	if (game->cub_file)
-		free(game->cub_file);
-	game->cub_file = temp;
+	if (game->cub)
+		free(game->cub);
+	game->cub = temp;
 	return (0);
 }
 
@@ -43,7 +43,7 @@ void read_cub(t_game *game, char *cub)
 
 	row = NULL;
 	if (ft_isdir(cub))
-		full_exit(strerror(errno), game, errno);
+		full_exit("Error: cub is a directory", game, 1);
 	game->fd = open(cub, O_RDONLY);
 	if (game->fd < 0)
 		full_exit(strerror(errno), game, errno);
@@ -61,6 +61,7 @@ void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
  	read_textures(game);
-	read_map(game);	
+	read_map(game);
+	check_textures(game);
 // 	ft_parse_path(&game);
 }

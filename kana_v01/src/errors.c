@@ -38,7 +38,8 @@ void	free_arr(char **arr)
 		free(arr[i]);
 		i++;
 	}
-	free(arr);
+	//free(arr);
+	arr = NULL;
 }
 
 void	full_exit(char *s, t_game *game, int exit_code)
@@ -50,7 +51,7 @@ void	full_exit(char *s, t_game *game, int exit_code)
 	if (game->fd)
 		close(game->fd);
 	if (game->cub_height)
-		free_arr(game->cub_file);
+		free_arr(game->cub);
 	if (game->map_height)
 		free_arr(game->map);
 	if (s)

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 13:00:51 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:49:21 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ void	free_arr(char **arr);
 
 //textures
 void	read_textures(t_game *game);
+
+//map
+void	read_map(t_game *game);
 
 #endif

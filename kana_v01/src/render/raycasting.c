@@ -6,11 +6,11 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/10 14:42:51 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:32:00 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 /**
  * @brief sets up a ray based on its position across the screen.
@@ -131,15 +131,43 @@ static void	perform_dda(t_game *game)
 	}
 }
 
+/**
+ * @brief Calculates the perpendicular distance from the player's position to the wall.
+ * Calculates the exact point where the ray hits the wall.
+ * @param wall_dist is the shortest perpendicular distance from the starting point to the wall.
+ * @param wall_pos is the exact position on the grid line where the ray crosses and hits the wall.
+ * @param tex_x is the exact column of the texture that should be mapped to the section
+ * of the wall where the ray hits.
+ * @note When the ray hits the vertical wall, the distance is calculated based on x coordinates
+ * and the wall hitting position is calculated based on y coordinates.
+ * @note We calculate the precise wall hiting position to determine
+ * which part of the texture to display.
+*/
 static void	calculate_wall_distance(t_game *game, bool vertical_wall)
 {
+	int	tex_x;
+
 	game->ray.hit_wall = true;
 	if (vertical_wall)
+	{
 		game->ray.wall_dist = fabs((game->ray.pos_x - game->player.pos_x)
 				/ game->ray.dir_x);
+		game->ray.wall_pos = game->ray.pos_y + game->ray.wall_dist
+			* game->ray.dir_y;
+	}
 	else
+	{
 		game->ray.wall_dist = fabs((game->ray.pos_y - game->player.pos_y)
 				/ game->ray.dir_y);
+		game->ray.wall_pos = game->ray.pos_x + game->ray.wall_dist
+			* game->ray.dir_x;
+	}
+	game->ray.wall_pos -= floor(game->ray.wall_pos);
+	tex_x = (int)(game->ray.wall_pos * (double)(texture_width));
+	if ((vertical_wall && game->ray.dir_x > 0)
+		|| (!vertical_wall && game->ray.dir_y < 0))
+		tex_x = texture_width - tex_x - 1;
+	game->wall.texture_x = tex_x;
 }
 
 void	raycasting(t_game *game)
@@ -151,7 +179,8 @@ void	raycasting(t_game *game)
 	{
 		init_ray(game, current_x);
 		perform_dda(game);
-		draw_vertical_line(current_x, game->ray.wall_dist, game);
+		calculate_line(current_x, game);
+		draw_vertical_line();
 		current_x++;
 	}
 }

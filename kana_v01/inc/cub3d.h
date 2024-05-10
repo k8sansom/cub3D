@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 12:38:54 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:29:23 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@
 # define KEY_RIGHT 	65363
 # define KEY_DOWN  	65364	
 
+typedef struct s_wall
+{
+	int		texture_x;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_wall;
+
 typedef struct s_ray
 {
 	bool	hit_wall;
 	int		current_column;
 	double	wall_dist;
+	double	wall_pos;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -114,20 +123,35 @@ typedef struct s_game
 	t_textures	textures;
 	t_player	player;
 	t_ray		ray;
+	t_wall		wall;
 }	t_game;
 
 //init
-void	init_game(t_game *game);
+void		init_game(t_game *game);
 
 //parsing
-void	parse_file(t_game *game, char *map);
-void 	read_cub(t_game *game, char *map);
+void		parse_file(t_game *game, char *map);
+void 		read_cub(t_game *game, char *map);
 
 //errors
-void	full_exit(char *s, t_game *game, int exit_code);
-void	free_arr(char **arr);
+void		full_exit(char *s, t_game *game, int exit_code);
+void		free_arr(char **arr);
 
 //textures
-void	read_textures(t_game *game);
+void		read_textures(t_game *game);
+
+//raycasting
+void		raycasting(t_game *game);
+static void	calculate_wall_distance(t_game *game, bool vertical_wall);
+static void	perform_dda(t_game *game);
+static void	set_steps(t_game *game);
+static void	init_ray(t_game *game, int current_x);
+
+//raycasting utils
+int			is_wall(t_game *game);
+
+//draw walls
+void		calculate_line(int x, t_game *game);
+void		draw_vertical_line();
 
 #endif

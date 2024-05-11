@@ -29,10 +29,7 @@ static int	check_xpms(char *north, char *south, char *east, char *west)
 		|| south[s - 3] != 'p' || east[e - 3] != 'p' || west[w - 3] != 'p' \
 		|| north[n - 2] != 'm' || south[s - 2] != 'm' || east[e - 2] != 'm' \
 		|| west[w - 2] != 'm')
-		{
-			ft_printf("we're here");
-			return (1);
-		}
+		return (1);
 	return (0);
 }
 

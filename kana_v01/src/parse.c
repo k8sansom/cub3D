@@ -40,10 +40,15 @@ static int	adding_rows(t_game *game, char *row)
 void read_cub(t_game *game, char *cub)
 {
 	char	*row;
+	size_t	len;
 
 	row = NULL;
+	len = ft_strlen(cub);
 	if (ft_isdir(cub))
 		full_exit("Error: cub is a directory", game, 1);
+	if (cub[len - 4] != '.' || cub[len - 3] != 'c' || cub[len - 2] != 'u' \
+		|| cub[len - 1] != 'b')
+		full_exit("Error: file is not a .cub", game, 2);
 	game->fd = open(cub, O_RDONLY);
 	if (game->fd < 0)
 		full_exit(strerror(errno), game, errno);

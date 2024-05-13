@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 14:49:21 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:17:21 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_game
 	int			map_height;
 	int			cub_height;
 	int			map_width;
+	int			player_counter;
 
 	char		**cub;
 	char		**map;

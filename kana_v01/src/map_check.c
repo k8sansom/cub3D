@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/13 16:35:11 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:42:06 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	fill_spaces(t_game *game)
 		{
 			if (ft_strchr(WHITESPACE, game->map[i][j]))
 			{
-				if 
+				if (game->map[i + 1][j] != '0' && game->map[i][j + 1] != '0')
+					game->map[i][j] == '1';
 			}
 		}
 	}

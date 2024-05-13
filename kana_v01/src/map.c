@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-// void	check_map(t_game *game)
+// void	check_map_valid(t_game *game)
 // {
 // 	int	vertical;
 // 	int	horizontal;
@@ -39,6 +39,10 @@
 // 		ft_exit ("Error: Something is wrong with player, exit or collectable", \
 // 			game, game->exit_code++);
 // }
+void	check_map(t_game *game)
+{
+	check_chars_valid(game->map);
+}
 
 void	copy_map(t_game *game, int start)
 {

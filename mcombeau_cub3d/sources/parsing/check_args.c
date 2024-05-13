@@ -32,7 +32,7 @@ static bool	is_dir(char *arg)
 	return (ret);
 }
 
-static bool	is_cub_file(char *arg)
+static bool	is_cub(char *arg)
 {
 	size_t	len;
 
@@ -66,7 +66,7 @@ int	check_file(char *arg, bool cub)
 	if (fd == -1)
 		return (err_msg(arg, strerror(errno), FAILURE));
 	close(fd);
-	if (cub && !is_cub_file(arg))
+	if (cub && !is_cub(arg))
 		return (err_msg(arg, ERR_FILE_NOT_CUB, FAILURE));
 	if (!cub && !is_xpm_file(arg))
 		return (err_msg(arg, ERR_FILE_NOT_XPM, FAILURE));

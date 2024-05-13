@@ -125,5 +125,6 @@ void	check_textures(t_game *game);
 
 //map
 void	read_map(t_game *game);
+void	check_map(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 14:46:49 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/14 11:47:43 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,14 @@ void read_cub(t_game *game, char *cub)
 			break ;
 	}
 	close(game->fd);
-	//game->map_width = ft_get_width(game->map[0]);
 }
 
 void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
- 	read_textures(game);
+	read_textures(game);
 	read_map(game);
 	check_textures(game);
-//	check_map(game);
+	check_map(game);
 // 	ft_parse_path(&game);
 }

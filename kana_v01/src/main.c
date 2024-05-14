@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:19:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/14 13:32:50 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/14 13:44:27 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int ac, char **av)
 		ft_printf("%d\n", game.textures.floor[i]);
 	for (int i = 0; i < 3; i++)
 		ft_printf("%d\n", game.textures.ceiling[i]);
-	ft_printf("game map:\n");
-	for (int i = 0; i < game.map_height; i++)
-		ft_printf("%s", game.map[i]);
+	// ft_printf("game map:\n");
+	// for (int i = 0; i < game.map_height; i++)
+	// 	ft_printf("%s", game.map[i]);
 	full_exit("all done", &game, 0);
 	// ft_error_check(&game);
 	// ft_parse_path(&game);

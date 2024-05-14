@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/14 13:30:43 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/14 13:55:34 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static int	check_horizontal(t_game *game)
 		j++;
 	}
 	j = 0;
-	while (j < (int)ft_strlen(game->map[game->map_height]) - 1)
+	while (j < (int)ft_strlen(game->map[game->map_height - 1]) - 1)
 	{
-		if (game->map[game->map_height][j] != '1')
+		if (game->map[game->map_height - 1][j] != '1')
 			return (0);
+		j++;
 	}
 	return (1);
 }
@@ -39,8 +40,8 @@ static int	check_vertical(t_game *game)
 	i = 0;
 	while (i < game->map_height)
 	{
-		if (game->map[i][0] != '1' && \
-			game->map[i][ft_strlen(game->map[i]) - 1] != '1')
+		if (game->map[i][0] != '1' || \
+			game->map[i][ft_strlen(game->map[i]) - 2] != '1')
 			return (0);
 		i++;
 	}
@@ -68,7 +69,7 @@ static void	fill_spaces(t_game *game)
 	while (++i < game->map_height)
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(game->map[i]) - 1)
+		while (++j < (int)ft_strlen(game->map[i]) - 2)
 		{
 			if (ft_strchr(WHITESPACE, game->map[i][j]))
 				game->map[i][j] = '1';
@@ -97,10 +98,14 @@ void	check_map(t_game *game)
 {
 	int	i;
 	int	j;
+	int	v;
+	int	h;
 
 	check_at_end(game);
 	fill_spaces(game);
-	if (!check_vertical(game) || !check_horizontal(game))
+	v = check_vertical(game);
+	h = check_horizontal(game);
+	if (!v || !h)
 		full_exit("Error: missing external walls!", game, 3);
 	i = -1;
 	while (++i < game->map_height)

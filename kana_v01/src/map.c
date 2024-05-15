@@ -24,7 +24,7 @@ void	copy_map(t_game *game, int start)
 		i++;
 		start++;
 	}
-	game->map[i] = ft_strdup("\0");
+	game->map[i] = NULL;
 	game->map_height = i;
 }
 

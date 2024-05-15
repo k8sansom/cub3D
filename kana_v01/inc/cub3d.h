@@ -62,6 +62,8 @@ typedef struct s_textures
 	char			*south;
 	char			*west;
 	char			*east;
+	char			*floor_str;
+	char			*ceiling_str;
 	int				*floor;
 	int				*ceiling;
 	size_t			hex_floor;

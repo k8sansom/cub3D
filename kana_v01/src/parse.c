@@ -58,6 +58,8 @@ void read_cub(t_game *game, char *cub)
 		if (adding_rows(game, row))
 			break ;
 	}
+	if (!game->cub)
+		full_exit("Error: cub file is empty", game, 2);
 	close(game->fd);
 }
 
@@ -65,8 +67,8 @@ void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
 	read_textures(game);
-	read_map(game);
 	check_textures(game);
+	read_map(game);
 	check_map(game);
 // 	ft_parse_path(&game);
 }

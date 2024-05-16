@@ -121,4 +121,5 @@ void	check_map(t_game *game)
 	}
 	if (game->player_counter != 1)
 		full_exit ("Error: player count incorrect", game, 3);
+	check_player_position(game);
 }

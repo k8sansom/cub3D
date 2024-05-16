@@ -102,6 +102,9 @@ typedef struct s_game
 	int			cub_height;
 	int			map_width;
 	int			player_counter;
+	int			move_counter;
+	int			player_pos_x;
+	int			player_pos_y;
 
 	char		**cub;
 	char		**map;
@@ -121,6 +124,7 @@ void 	read_cub(t_game *game, char *map);
 //errors
 void	full_exit(char *s, t_game *game, int exit_code);
 void	free_arr(char **arr);
+void	ft_free(char **arr, int n);
 
 //textures
 void	read_textures(t_game *game);
@@ -130,5 +134,8 @@ size_t	convert_rgb(int *tab);
 //map
 void	read_map(t_game *game);
 void	check_map(t_game *game);
+
+//player
+void	check_player_position(t_game *game);
 
 #endif

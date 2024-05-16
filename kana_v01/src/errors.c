@@ -12,6 +12,19 @@
 
 #include "../inc/cub3d.h"
 
+void	ft_free(char **arr, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 void	free_textures(t_textures *textures)
 {
 	if (textures->north)

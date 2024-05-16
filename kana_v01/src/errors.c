@@ -60,7 +60,7 @@ void	full_exit(char *s, t_game *game, int exit_code)
 	  	free_arr(game->map);
 	if (s)
 		ft_fprintf(1, "%s\n", s);
-	//free_textures(&game->textures);
+	free_textures(&game->textures);
 	//free_ray(game->ray);
 	exit(exit_code);
 }

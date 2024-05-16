@@ -125,6 +125,7 @@ void	free_arr(char **arr);
 //textures
 void	read_textures(t_game *game);
 void	check_textures(t_game *game);
+size_t	convert_rgb(int *tab);
 
 //map
 void	read_map(t_game *game);

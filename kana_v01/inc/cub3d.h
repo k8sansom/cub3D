@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 09:57:12 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:47:01 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-//# include "../mlx/mlx.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
-//# include "../mlx/mlx.h"
-//# include "../mlx/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
 # include <sys/errno.h>
@@ -34,16 +33,28 @@
 # define KEY_S		115
 # define KEY_D		100
 # define KEY_ESC	65307
-# define KEY_UP  	65362
 # define KEY_LEFT  	65361
 # define KEY_RIGHT 	65363
-# define KEY_DOWN  	65364	
+
+# define MOVESPEED 0.1
+# define ROTSPEED 0.01
+
+# define MOUSE_S 0.005
+
+typedef struct s_wall
+{
+	int		texture_x;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_wall;
 
 typedef struct s_ray
 {
 	bool	hit_wall;
 	int		current_column;
 	double	wall_dist;
+	double	wall_pos;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -94,8 +105,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	int			fd;
-	// void		*mlx_ptr;
-	// void		*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			win_height;
 	int			win_width;
 	int			map_height;
@@ -112,31 +123,63 @@ typedef struct s_game
 	t_textures	textures;
 	t_player	player;
 	t_ray		ray;
+	t_wall		wall;
 }	t_game;
 
 //init
-void	init_game(t_game *game);
+void		init_game(t_game *game);
 
 //parsing
-void	parse_file(t_game *game, char *map);
-void 	read_cub(t_game *game, char *map);
+void		parse_file(t_game *game, char *map);
+void		read_cub(t_game *game, char *map);
 
 //errors
-void	full_exit(char *s, t_game *game, int exit_code);
-void	free_arr(char **arr);
-void	ft_free(char **arr, int n);
+void		full_exit(char *s, t_game *game, int exit_code);
+void		free_arr(char **arr);
+void		ft_free(char **arr, int n);
 
 //textures
-void	read_textures(t_game *game);
-void	check_textures(t_game *game);
-int		*get_rgbs(t_game *game, char *str);
-size_t	convert_rgb(int *tab);
+void		read_textures(t_game *game);
+void		check_textures(t_game *game);
+int			*get_rgbs(t_game *game, char *str);
+size_t		convert_rgb(int *tab);
 
 //map
-void	read_map(t_game *game);
-void	check_map(t_game *game);
+void		read_map(t_game *game);
+void		check_map(t_game *game);
 
 //player
-void	check_player_position(t_game *game);
+void		check_player_position(t_game *game);
+
+//controls
+static void	key_press(t_game *game, int key);
+static void	key_release(t_game *game, int key);
+static void	use_mouse(int x, int y, t_game *game);
+void		set_hooks(t_game *game);
+
+//raycasting
+void		raycasting(t_game *game);
+static void	calculate_wall_distance(t_game *game, bool vertical_wall);
+static void	perform_dda(t_game *game);
+static void	set_steps(t_game *game);
+static void	init_ray(t_game *game, int current_x);
+
+//movement
+void		handle_movement(t_game *game);
+static void	move_right(t_game *game);
+static void	move_left(t_game *game);
+static void	move_forward(t_game *game);
+static void	move_backward(t_game *game);
+
+//rotation
+static void	handle_rotation(t_game *game);
+
+//raycasting utils
+static int	is_wall(t_game *game);
+static bool	is_valid_pos(t_game *game, double x, double y);
+
+//draw walls
+void		calculate_line(int x, t_game *game);
+void		draw_vertical_line();
 
 #endif

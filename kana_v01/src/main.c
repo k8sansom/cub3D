@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:19:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 13:10:42 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:58:26 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_file(&game, av[1]);
+	init_player_dir(&game);
+	init_minimap(&game);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
 		full_exit("Error: initializing mlx", &game, 1);
@@ -67,5 +69,7 @@ void	render_game(t_game *game)
 		draw_vertical_line(game, current_x);
 		current_x++;
 	}
+	render_minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,...);
+	game->player.has_moved = 0;
 }

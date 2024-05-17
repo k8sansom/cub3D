@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:47:01 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:22:48 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@
 # define ROTSPEED 0.01
 
 # define MOUSE_S 0.005
+
+# define MMAP_PLAYER 0x00FF00
+# define MMAP_WALL 0x808080
+# define MMAP_FLOOR 0xE6E6E6
+# define MMAP_OTHER 0x404040
+
+typedef struct s_mmap
+{
+	int		bits_per_pix;
+	int		line_length;
+	int		endian; // Pixel endianess (0: little endian, 1: big endian)
+	void	*img;
+	int		*addr;
+	int		view_dist;
+	int		size;
+	int		tile_size;
+	int		off_x;
+	int		off_y;
+}	t_mmap;
 
 typedef struct s_wall
 {
@@ -124,6 +143,7 @@ typedef struct s_game
 	t_player	player;
 	t_ray		ray;
 	t_wall		wall;
+	t_mmap		mmap;
 }	t_game;
 
 //init
@@ -181,5 +201,12 @@ static bool	is_valid_pos(t_game *game, double x, double y);
 //draw walls
 void		calculate_line(int x, t_game *game);
 void		draw_vertical_line();
+
+//minimap
+void		init_minimap(t_game *game);
+int			get_mmap_offset(t_mmap mmap, int mapsize, int pos);
+void		render_minimap(t_game *game);
+void		set_tile_pixels(t_game *game, int start_x, int start_y, int color);
+void		draw_minimap_tile(t_game *game, int x, int y);
 
 #endif

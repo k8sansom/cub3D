@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 11:17:44 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:22:07 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,44 @@ void	read_textures(t_game *game)
 {
 	int	i;
 
-	i = 0;
-	while (i < game->cub_height)
+	i = -1;
+	while (game->cub[++i])
 	{
 		if (ft_strncmp(game->cub[i], "NO ", 3) == 0)
+		{			
+			if (game->textures.north)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.north = ft_strdup(game->cub[i] + 3);
-		else if (ft_strncmp(game->cub[i], "SO ", 3) == 0)
+		}
+		else if (ft_strncmp(game->cub[i], "SO ", 3) == 0 )
+		{
+			if (game->textures.south)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.south = ft_strdup(game->cub[i] + 3);
+		}
 		else if (ft_strncmp(game->cub[i], "WE ", 3) == 0)
+		{
+			if (game->textures.west)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.west = ft_strdup(game->cub[i] + 3);
+		}
 		else if (ft_strncmp(game->cub[i], "EA ", 3) == 0)
+		{
+			if (game->textures.east)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.east = ft_strdup(game->cub[i] + 3);
+		}
 		else if (ft_strncmp(game->cub[i], "F ", 2) == 0)
+		{
+			if (game->textures.floor_str)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.floor_str = ft_strdup(game->cub[i] + 2);
+		}
 		else if (ft_strncmp(game->cub[i], "C ", 2) == 0)
+		{
+			if (game->textures.ceiling_str)
+				full_exit("Error: duplicate texture", game, 2);
 			game->textures.ceiling_str = ft_strdup(game->cub[i] + 2);
-		i++;
+		}
 	}
 }

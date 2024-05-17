@@ -6,11 +6,22 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:53:18 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 11:09:51 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 11:59:32 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	check_duplicates(t_game *game)
+{
+	if (!ft_strcmp(game->textures.south, game->textures.north) || \
+		!ft_strcmp(game->textures.east, game->textures.north) || \
+		!ft_strcmp(game->textures.west, game->textures.north) || \
+		!ft_strcmp(game->textures.east, game->textures.south) || \
+		!ft_strcmp(game->textures.west, game->textures.south) || \
+		!ft_strcmp(game->textures.east, game->textures.west))
+		full_exit("Error: duplicate texture file", game, 2);
+}
 
 static int	check_xpms(char *north, char *south, char *east, char *west)
 {
@@ -46,6 +57,7 @@ void	check_textures(t_game *game)
 	if (check_xpms(game->textures.north, game->textures.south, \
 				game->textures.east, game->textures.west))
 		full_exit("Error: texture file is not xpm", game, 2);
+	check_duplicates(game);
 	game->textures.ceiling = get_rgbs(game, game->textures.ceiling_str);
 	game->textures.floor = get_rgbs(game, game->textures.floor_str);
 	while (i < 3)

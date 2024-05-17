@@ -6,117 +6,59 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/07 10:49:00 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:29:09 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int	ft_d(t_game *game)
+void	handle_key_press(t_game *game, int key)
 {
-	int	x;
-	int	y;
-	int	move;
-	int	c;
-
-	c = 'R';
-	x = game->x_axis;
-	y = game->y_axis;
-	++x;
-	if (game->map[y][x] == '1')
-		return (0);
-	if (game->map[y][x] == 'V')
-		ft_exit("Game Over!", game, 0);
-	move = ft_move(game, x, y);
-	if (!move)
-		return (0);
-	game->map[y][x - 1] = '0';
-	return (c);
+	if (key == KEY_ESC)
+		ft_exit("Giving up?!", game, 0);
+	else if (key == KEY_W)
+		game->player.move_y = 1;
+	else if (key == KEY_S)
+		game->player.move_y = -1;
+	else if (key == KEY_A)
+		game->player.move_x = -1;
+	else if (key == KEY_D)
+		game->player.move_x = 1;
+	else if (key == KEY_LEFT)
+		game->player.rotate -= 1;
+	else if (key == KEY_RIGHT)
+		game->player.rotate += 1;
 }
 
-static int	ft_a(t_game *game)
+void	handle_key_release(t_game *game, int key)
 {
-	int	x;
-	int	y;
-	int	move;
-	int	c;
-
-	c = 'L';
-	x = game->x_axis;
-	y = game->y_axis;
-	--x;
-	if (game->map[y][x] == '1')
-		return (0);
-	if (game->map[y][x] == 'V')
-		ft_exit("Game Over!", game, 0);
-	move = ft_move(game, x, y);
-	if (!move)
-		return (0);
-	game->map[y][x + 1] = '0';
-	return (c);
+	if (key == KEY_W)
+	{
+		if (game->player.move_y == 1)
+			game->player.move_y = 0;
+	}
+	else if (key == KEY_S)
+	{
+		if (game->player.move_y == -1)
+			game->player.move_y = 0;
+	}
+	else if (key == KEY_A)
+	{
+		if (game->player.move_x == -1)
+			game->player.move_x = 0;
+	}
+	else if (key == KEY_D)
+	{
+		if (game->player.move_x == 1)
+			game->player.move_x = 0;
+	}
+	else if (key == KEY_LEFT || key == KEY_RIGHT)
+		game->player.rotate = 0;
 }
 
-static int	ft_s(t_game *game)
+void	input_handler(t_game *game)
 {
-	int	x;
-	int	y;
-	int	move;
-	int	c;
-
-	c = 'D';
-	x = game->x_axis;
-	y = game->y_axis;
-	++y;
-	if (game->map[y][x] == '1')
-		return (0);
-	if (game->map[y][x] == 'V')
-		ft_exit("Game Over!", game, 0);
-	move = ft_move(game, x, y);
-	if (!move)
-		return (0);
-	game->map[y - 1][x] = '0';
-	return (c);
-}
-
-static int	ft_w(t_game *game)
-{
-	int	x;
-	int	y;
-	int	move;
-	int	c;
-
-	c = 'U';
-	x = game->x_axis;
-	y = game->y_axis;
-	--y;
-	if (game->map[y][x] == '1')
-		return (0);
-	if (game->map[y][x] == 'V')
-		ft_exit("Game Over!", game, 0);
-	move = ft_move(game, x, y);
-	if (!move)
-		return (0);
-	game->map[y + 1][x] = '0';
-	return (c);
-}
-
-int	ft_controls(int command, t_game *game)
-{
-	int	c;
-
-	c = 0;
-	if (command == KEY_ESC)
-		ft_exit ("Giving up?!", game, 0);
-	if (command == KEY_W || command == KEY_UP)
-		c = ft_w(game);
-	if (command == KEY_S || command == KEY_DOWN)
-		c = ft_s(game);
-	if (command == KEY_A || command == KEY_LEFT)
-		c = ft_a(game);
-	if (command == KEY_D || command == KEY_RIGHT)
-		c = ft_d(game);
-	if (c)
-		ft_render_game(game, c);
-	ft_print_to_screen(game);
-	return (0);
+	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, quit_cub3d, game);
+	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, key_press_handler, game);
+	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }

@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/17 12:37:26 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:13:06 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,13 @@ void	raycasting(t_game *game)
 	int	current_x;
 
 	current_x = 0;
+	game->ray.current_column = 0;
 	while (current_x < game->map_width)
 	{
 		init_ray(game, current_x);
 		perform_dda(game);
 		calculate_line(current_x, game);
-		draw_vertical_line();
 		current_x++;
+		game->ray.current_column++;
 	}
 }

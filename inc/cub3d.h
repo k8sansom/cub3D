@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:34:59 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:47:01 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 
 # define MOVESPEED 0.1
 # define ROTSPEED 0.01
+
+# define MOUSE_S 0.005
 
 typedef struct s_wall
 {

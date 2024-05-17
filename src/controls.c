@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:35:43 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:47:46 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	key_press(t_game *game, int key)
 {
 	if (key == KEY_ESC)
-		ft_exit("Giving up?!", game, 0);
+		full_exit("Giving up?!", game, 0);
 	else if (key == KEY_W)
 		game->player.move_y = 1;
 	else if (key == KEY_S)
@@ -73,7 +73,7 @@ static void	use_mouse(int x, int y, t_game *game)
 	}
 	delta_x = x - old_x;
 	if (delta_x)
-		game->player.rotate += delta_x * 0.005;
+		game->player.rotate += delta_x * MOUSE_S;
 	mlx_mouse_move(game->mlx_ptr, game->win_ptr, old_x, old_y);
 }
 

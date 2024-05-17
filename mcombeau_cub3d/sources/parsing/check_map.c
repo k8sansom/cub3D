@@ -69,7 +69,7 @@ static int	check_player_position(t_data *data, char **map_tab)
 	while (map_tab[i])
 	{
 		j = 0;
-		while (map_tab[i][j])
+		while (map_tab[i][j]) 
 		{
 			if (ft_strchr("NSEW", map_tab[i][j]))
 			{

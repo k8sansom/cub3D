@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 15:27:34 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 10:32:03 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_arr(char **arr)
 		free(arr[i]);
 		i++;
 	}
-	//free(arr);
+	free(arr);
 	arr = NULL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/14 13:55:34 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 10:05:48 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	check_at_end(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->map_height)
+	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j] && ft_strchr(WHITESPACE, game->map[i][j]))

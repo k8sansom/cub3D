@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/14 11:47:43 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 10:28:11 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	adding_rows(t_game *game, char *row)
 	return (0);
 }
 
-void read_cub(t_game *game, char *cub)
+void	read_cub(t_game *game, char *cub)
 {
 	char	*row;
 	size_t	len;
@@ -58,6 +58,7 @@ void read_cub(t_game *game, char *cub)
 		if (adding_rows(game, row))
 			break ;
 	}
+	game->cub[game->cub_height] = NULL;
 	if (!game->cub)
 		full_exit("Error: cub file is empty", game, 2);
 	close(game->fd);

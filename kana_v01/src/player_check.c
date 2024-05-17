@@ -23,7 +23,7 @@ void	path_check(t_game *game)
 	temp.map_height = game->map_height;
 	temp.player_pos_x = game->player_pos_x;
 	temp.player_pos_y = game->player_pos_y;
-	temp.map = (char **)malloc(game->map_height * sizeof(char *));
+	temp.map = (char **)malloc((game->map_height + 1) * sizeof(char *));
 	if (!temp.map)
 		full_exit("Error: allocating memory", game, 5);
 	i = 0;

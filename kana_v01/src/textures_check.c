@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_check.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/17 09:53:18 by ksansom           #+#    #+#             */
+/*   Updated: 2024/05/17 11:09:51 by ksansom          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 static int	check_xpms(char *north, char *south, char *east, char *west)
@@ -28,18 +40,19 @@ void	check_textures(t_game *game)
 
 	i = 0;
 	if (!game->textures.north || !game->textures.south || !game->textures.west \
-		|| !game->textures.east || !game->textures.ceiling_str || !game->textures.floor_str)
+		|| !game->textures.east || !game->textures.ceiling_str || \
+		!game->textures.floor_str)
 		full_exit("Error: texture path missing", game, 2);
-	if (ft_isdir(game->textures.north) || ft_isdir(game->textures.south) \
-		|| ft_isdir(game->textures.east) || ft_isdir(game->textures.west))
-		full_exit("Error: texture is directory", game, 2);
 	if (check_xpms(game->textures.north, game->textures.south, \
 				game->textures.east, game->textures.west))
 		full_exit("Error: texture file is not xpm", game, 2);
+	game->textures.ceiling = get_rgbs(game, game->textures.ceiling_str);
+	game->textures.floor = get_rgbs(game, game->textures.floor_str);
 	while (i < 3)
 	{
 		if ((game->textures.floor[i] < 0 || game->textures.floor[i] > 255) \
-			|| (game->textures.ceiling[i] < 0 || game->textures.ceiling[i] > 255))
+			|| (game->textures.ceiling[i] < 0 || \
+			game->textures.ceiling[i] > 255))
 			full_exit("Error: with color rgb", game, 2);
 		i++;
 	}

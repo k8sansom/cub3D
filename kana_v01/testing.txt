@@ -14,7 +14,7 @@ maps/bad/map_middle.cub
 maps/bad/map_missing.cub
 maps/bad/map_only.cub
 maps/bad/map_too_small.cub
-maps/bad/player_multiple.cub
+maps/bad/player_multiple.cub 
 maps/bad/player_none.cub
 maps/bad/player_on_edge.cub
 maps/bad/textures_dir.cub

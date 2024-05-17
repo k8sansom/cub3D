@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/10 12:43:11 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 11:17:44 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int check_digits(const char *str)
 	return (0);
 }
 
-static int	*get_rgbs(t_game *game, char *str)
+int	*get_rgbs(t_game *game, char *str)
 {
 	char	**rgb_arr;
 	int		*rgb;
@@ -93,6 +93,4 @@ void	read_textures(t_game *game)
 			game->textures.ceiling_str = ft_strdup(game->cub[i] + 2);
 		i++;
 	}
-	game->textures.ceiling = get_rgbs(game, game->textures.ceiling_str);
-	game->textures.floor = get_rgbs(game, game->textures.floor_str);
 }

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/14 12:49:47 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/17 09:57:12 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	ft_free(char **arr, int n);
 //textures
 void	read_textures(t_game *game);
 void	check_textures(t_game *game);
+int		*get_rgbs(t_game *game, char *str);
 size_t	convert_rgb(int *tab);
 
 //map

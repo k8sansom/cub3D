@@ -13,8 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
+// # include "../minilibx-linux/mlx.h"
+// # include "../minilibx-linux/mlx_int.h"
 # include "../libft/inc/libft.h"
 # include <stdio.h>
 # include <string.h>
@@ -124,8 +124,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	int			fd;
-	void		*mlx_ptr;
-	void		*win_ptr;
+	// void		*mlx_ptr;
+	// void		*win_ptr;
 	int			win_height;
 	int			win_width;
 	int			map_height;
@@ -171,42 +171,42 @@ void		check_map(t_game *game);
 //player
 void		check_player_position(t_game *game);
 
-//controls
-static void	key_press(t_game *game, int key);
-static void	key_release(t_game *game, int key);
-static void	use_mouse(int x, int y, t_game *game);
-void		set_hooks(t_game *game);
+// //controls
+// static void	key_press(t_game *game, int key);
+// static void	key_release(t_game *game, int key);
+// static void	use_mouse(int x, int y, t_game *game);
+// void		set_hooks(t_game *game);
 
-//raycasting
-void		raycasting(t_game *game);
-static void	calculate_wall_distance(t_game *game, bool vertical_wall);
-static void	perform_dda(t_game *game);
-static void	set_steps(t_game *game);
-static void	init_ray(t_game *game, int current_x);
+// //raycasting
+// void		raycasting(t_game *game);
+// static void	calculate_wall_distance(t_game *game, bool vertical_wall);
+// static void	perform_dda(t_game *game);
+// static void	set_steps(t_game *game);
+// static void	init_ray(t_game *game, int current_x);
 
-//movement
-void		handle_movement(t_game *game);
-static void	move_right(t_game *game);
-static void	move_left(t_game *game);
-static void	move_forward(t_game *game);
-static void	move_backward(t_game *game);
+// //movement
+// void		handle_movement(t_game *game);
+// static void	move_right(t_game *game);
+// static void	move_left(t_game *game);
+// static void	move_forward(t_game *game);
+// static void	move_backward(t_game *game);
 
-//rotation
-static void	handle_rotation(t_game *game);
+// //rotation
+// static void	handle_rotation(t_game *game);
 
-//raycasting utils
-static int	is_wall(t_game *game);
-static bool	is_valid_pos(t_game *game, double x, double y);
+// //raycasting utils
+// static int	is_wall(t_game *game);
+// static bool	is_valid_pos(t_game *game, double x, double y);
 
-//draw walls
-void		calculate_line(int x, t_game *game);
-void		draw_vertical_line();
+// //draw walls
+// void		calculate_line(int x, t_game *game);
+// void		draw_vertical_line();
 
-//minimap
-void		init_minimap(t_game *game);
-int			get_mmap_offset(t_mmap mmap, int mapsize, int pos);
-void		render_minimap(t_game *game);
-void		set_tile_pixels(t_game *game, int start_x, int start_y, int color);
-void		draw_minimap_tile(t_game *game, int x, int y);
+// //minimap
+// void		init_minimap(t_game *game);
+// int			get_mmap_offset(t_mmap mmap, int mapsize, int pos);
+// void		render_minimap(t_game *game);
+// void		set_tile_pixels(t_game *game, int start_x, int start_y, int color);
+// void		draw_minimap_tile(t_game *game, int x, int y);
 
 #endif

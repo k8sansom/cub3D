@@ -28,6 +28,6 @@ maps/bad/wall_hole_north.cub
 maps/bad/wall_hole_south.cub
 maps/bad/wall_hole_west.cub
 maps/bad/wall_none.cub
+maps/bad/textures_duplicates.cub
 
 not working:
-maps/bad/textures_duplicates.cub

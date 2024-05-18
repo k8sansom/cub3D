@@ -29,5 +29,6 @@ maps/bad/wall_hole_south.cub
 maps/bad/wall_hole_west.cub
 maps/bad/wall_none.cub
 maps/bad/textures_duplicates.cub
+maps/bad/textures_same.cub
 
 not working:

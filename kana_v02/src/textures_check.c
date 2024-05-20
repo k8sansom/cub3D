@@ -52,10 +52,10 @@ void	check_textures(t_game *game)
 	if (!game->textures.north || !game->textures.south || !game->textures.west \
 		|| !game->textures.east || !game->textures.ceiling_str || \
 		!game->textures.floor_str)
-		full_exit("Error: texture path missing", game, 2);
+		exit(full_exit("Error: texture path missing", game, 2));
 	if (check_xpms(game->textures.north, game->textures.south, \
 				game->textures.east, game->textures.west))
-		full_exit("Error: texture file is not xpm", game, 2);
+		exit(full_exit("Error: texture file is not xpm", game, 2));
 	check_duplicates(game);
 	game->textures.ceiling = get_rgbs(game, game->textures.ceiling_str);
 	game->textures.floor = get_rgbs(game, game->textures.floor_str);
@@ -64,7 +64,7 @@ void	check_textures(t_game *game)
 		if ((game->textures.floor[i] < 0 || game->textures.floor[i] > 255) \
 			|| (game->textures.ceiling[i] < 0 || \
 			game->textures.ceiling[i] > 255))
-			full_exit("Error: with color rgb", game, 2);
+			exit(full_exit("Error: with color rgb", game, 2));
 		i++;
 	}
 	game->textures.hex_ceiling = convert_rgb(game->textures.ceiling);

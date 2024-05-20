@@ -61,10 +61,10 @@ void	free_arr(char **arr)
 
 void	full_exit(char *s, t_game *game, int exit_code)
 {
-	// if (game->win_ptr)
-	// 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	// if (game->mlx_ptr)
-	// 	mlx_destroy_display(game->mlx_ptr);
+	if (game->win_ptr)
+	 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+		mlx_destroy_display(game->mlx_ptr);
 	 if (game->fd)
 	 	close(game->fd);
 	if (game->cub)

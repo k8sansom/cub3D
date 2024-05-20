@@ -42,6 +42,7 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_file(&game, av[1]);
+	init_mlx(&game);
 	// init_player_dir(&game);
 	// init_minimap(&game);
 	// game.mlx_ptr = mlx_init();

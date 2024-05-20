@@ -71,5 +71,4 @@ void	parse_file(t_game *game, char *cub)
 	check_textures(game);
 	read_map(game);
 	check_map(game);
-// 	ft_parse_path(&game);
 }

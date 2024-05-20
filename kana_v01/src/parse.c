@@ -45,7 +45,7 @@ void	read_cub(t_game *game, char *cub)
 	row = NULL;
 	len = ft_strlen(cub);
 	if (ft_isdir(cub))
-		full_exit("Error: is a directory", game, 1);
+		full_exit("Error: is a directory", game, 2);
 	if (cub[len - 4] != '.' || cub[len - 3] != 'c' || cub[len - 2] != 'u' \
 		|| cub[len - 1] != 'b')
 		full_exit("Error: file is not a .cub", game, 2);

@@ -46,6 +46,14 @@
 # define MMAP_FLOOR 0xE6E6E6
 # define MMAP_OTHER 0x404040
 
+typedef enum tex_index
+{
+	NO,
+	SO,
+	EA,
+	WE
+}
+
 typedef struct s_mmap
 {
 	int		bits_per_pix;
@@ -59,6 +67,15 @@ typedef struct s_mmap
 	int		off_x;
 	int		off_y;
 }	t_mmap;
+
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
+}	t_img;
 
 typedef struct s_wall
 {
@@ -124,8 +141,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	int			fd;
-	// void		*mlx_ptr;
-	// void		*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			win_height;
 	int			win_width;
 	int			map_height;
@@ -138,6 +155,8 @@ typedef struct s_game
 
 	char		**cub;
 	char		**map;
+
+	int			**texture_arr;
 
 	t_textures	textures;
 	t_player	player;

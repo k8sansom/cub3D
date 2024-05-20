@@ -142,6 +142,7 @@ typedef struct s_texinfo
 	int				index;
 	double			step;
 	double			pos;
+	
 	int				x;
 	int				y;
 }	t_texinfo;

@@ -106,7 +106,7 @@ void	check_map(t_game *game)
 	check_at_end(game);
 	fill_spaces(game);
 	if (!check_vertical(game) || !check_horizontal(game))
-		full_exit("Error: missing external walls!", game, 3);
+		exit(full_exit("Error: missing external walls!", game, 3));
 	i = -1;
 	while (++i < game->map_height)
 	{
@@ -114,7 +114,7 @@ void	check_map(t_game *game)
 		while (++j < (int)ft_strlen(game->map[i]) - 1)
 		{
 			if (!ft_strchr("NSEW01", game->map[i][j]))
-				exit(full_exit("Error: incorrect character in map", game, 3));
+				exit(full_exit("Error: incorrect character", game, 3));
 			if (ft_strchr("NSEW", game->map[i][j]))
 				game->player_counter++;
 		}

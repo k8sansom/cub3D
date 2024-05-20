@@ -75,19 +75,19 @@ int	*get_rgbs(t_game *game, char *str)
 static char	*copy_texture(t_game *game, char *src, char type)
 {
 	if (type == 'N' && game->textures.north)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (type == 'S' && game->textures.south)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (type == 'E' && game->textures.east)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (type == 'W' && game->textures.west)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (type == 'F' && game->textures.floor_str)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (type == 'C' && game->textures.ceiling_str)
-		full_exit("Error: duplicate texture", game, 3);
+		exit(full_exit("Error: duplicate texture", game, 3));
 	if (!src)
-		full_exit("Error: texture path missing", game, 3);
+		exit(full_exit("Error: texture path missing", game, 3));
 	return (ft_strdup(src));
 }
 

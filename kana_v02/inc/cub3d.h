@@ -53,6 +53,14 @@
 # define COLOR_FLOOR 0xCCCCCC   // Light Gray
 # define COLOR_CEILING 0x333333 // Dark Gray
 
+typedef enum tex_index
+{
+	NO,
+	SO,
+	EA,
+	WE
+}
+
 typedef struct s_mmap
 {
 	int		bits_per_pix;
@@ -168,6 +176,8 @@ typedef struct s_game
 //init
 void		init_game(t_game *game);
 int			render_game(t_game *game);
+void		init_mlx(t_game *game);
+void		init_textures(t_game *game);
 
 //parsing
 void		parse_file(t_game *game, char *map);

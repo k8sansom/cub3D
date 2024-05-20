@@ -48,7 +48,7 @@ void	init_textures(t_data *data)
 	data->textures[NORTH] = xpm_to_img(data, data->texinfo.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->texinfo.south);
 	data->textures[EAST] = xpm_to_img(data, data->texinfo.east);
-	data->textures[WEST] = xpm_to_img(data, data->texinfo.west);
+	data->textures[WEST] = xpm_to_img(data, data->texinfo.west); 
 }
 
 void	init_texinfo(t_texinfo *textures)

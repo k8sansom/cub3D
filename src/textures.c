@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:22:07 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 19:16:48 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,38 @@ int	*get_rgbs(t_game *game, char *str)
 	if (i != 3)
 	{
 		free_arr(rgb_arr);
-		full_exit("Error: with color rgb", game, 1);
+		exit(full_exit("Error: with color rgb", game, 1));
 	}
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 	{
 		free_arr(rgb_arr);
-		full_exit("Malloc error", game, 1);
+		exit(full_exit("Malloc error", game, 1));
 	}
 	i = -1;
 	while (rgb_arr[++i])
 		rgb[i] = ft_atoi(rgb_arr[i]);
 	free_arr(rgb_arr);
 	return (rgb);
+}
+
+static char	*copy_texture(t_game *game, char *src, char type)
+{
+	if (type == 'N' && game->textures.north)
+		full_exit("Error: duplicate texture", game, 3);
+	if (type == 'S' && game->textures.south)
+		full_exit("Error: duplicate texture", game, 3);
+	if (type == 'E' && game->textures.east)
+		full_exit("Error: duplicate texture", game, 3);
+	if (type == 'W' && game->textures.west)
+		full_exit("Error: duplicate texture", game, 3);
+	if (type == 'F' && game->textures.floor_str)
+		full_exit("Error: duplicate texture", game, 3);
+	if (type == 'C' && game->textures.ceiling_str)
+		full_exit("Error: duplicate texture", game, 3);
+	if (!src)
+		full_exit("Error: texture path missing", game, 3);
+	return (ft_strdup(src));
 }
 
 void	read_textures(t_game *game)
@@ -79,41 +98,17 @@ void	read_textures(t_game *game)
 	i = -1;
 	while (game->cub[++i])
 	{
-		if (ft_strncmp(game->cub[i], "NO ", 3) == 0)
-		{			
-			if (game->textures.north)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.north = ft_strdup(game->cub[i] + 3);
-		}
-		else if (ft_strncmp(game->cub[i], "SO ", 3) == 0 )
-		{
-			if (game->textures.south)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.south = ft_strdup(game->cub[i] + 3);
-		}
-		else if (ft_strncmp(game->cub[i], "WE ", 3) == 0)
-		{
-			if (game->textures.west)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.west = ft_strdup(game->cub[i] + 3);
-		}
-		else if (ft_strncmp(game->cub[i], "EA ", 3) == 0)
-		{
-			if (game->textures.east)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.east = ft_strdup(game->cub[i] + 3);
-		}
-		else if (ft_strncmp(game->cub[i], "F ", 2) == 0)
-		{
-			if (game->textures.floor_str)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.floor_str = ft_strdup(game->cub[i] + 2);
-		}
-		else if (ft_strncmp(game->cub[i], "C ", 2) == 0)
-		{
-			if (game->textures.ceiling_str)
-				full_exit("Error: duplicate texture", game, 2);
-			game->textures.ceiling_str = ft_strdup(game->cub[i] + 2);
-		}
+		if (!ft_strncmp(game->cub[i], "NO ", 3))
+			game->textures.north = copy_texture(game, game->cub[i] + 3, 'N');
+		else if (!ft_strncmp(game->cub[i], "SO ", 3))
+			game->textures.south = copy_texture(game, game->cub[i] + 3, 'S');
+		else if (!ft_strncmp(game->cub[i], "WE ", 3))
+			game->textures.west = copy_texture(game, game->cub[i] + 3, 'W');
+		else if (!ft_strncmp(game->cub[i], "EA ", 3))
+			game->textures.east = copy_texture(game, game->cub[i] + 3, 'E');
+		else if (!ft_strncmp(game->cub[i], "F ", 2))
+			game->textures.floor_str = copy_texture(game, game->cub[i] + 2, 'F');
+		else if (!ft_strncmp(game->cub[i], "C ", 2))
+			game->textures.ceiling_str = copy_texture(game, game->cub[i] + 2, 'C');
 	}
 }

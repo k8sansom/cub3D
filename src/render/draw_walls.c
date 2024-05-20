@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/17 13:17:28 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:59:34 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,81 @@ void	draw_vertical_line(t_game *game, int x)
 	int	draw_start;
 	int	draw_end;
 	int	y;
+	int	color;
+	int	*pixel;
 
+	color = get_wall_color(game);
 	draw_start = game->wall.draw_start;
 	draw_end = game->wall.draw_end;
 	y = draw_start;
 	while (y < draw_end)
 	{
-		mlx_pixel_put(game->mlx_ptr, game->win_ptr, x, y, mlx_get_color_value(game->mlx_ptr, ...));
+		pixel = (int *)(game->image.img_data + y
+				* game->image.size_line / 4 + x);
+		pixel = &color;
 		y++;
 	}
 }
 
+int	get_wall_color(t_game *game)
+{
+	if (game->ray.orientation == 'N')
+		return (COLOR_NORTH);
+	else if (game->ray.orientation == 'S')
+		return (COLOR_SOUTH);
+	else if (game->ray.orientation == 'E')
+		return (COLOR_EAST);
+	else if (game->ray.orientation == 'W')
+		return (COLOR_WEST);
+	else
+		return (0xFFFFFF);
+}
 
-void	calculate_line(int x, t_game *game)
+void	render_floor_and_ceiling(t_game *game)
+{
+	int	y;
+	int	x;
+	int	color;
+
+	y = 0;
+	while (y < game->win_height)
+	{
+		if (y < game->win_height / 2)
+			color = COLOR_CEILING;
+		else
+		{
+			color = COLOR_FLOOR;
+		}
+		x = 0;
+		while (x < game->win_width)
+		{
+			*(int *)(game->image.img_data + y
+					* game->image.size_line / 4 + x) = color;
+			x++;
+		}
+		y++;
+	}
+}
+
+void	wall_orientation(t_game *game, bool vertical_wall)
+{
+	if (vertical_wall)
+	{
+		if (game->ray.dir_x > 0)
+			game->ray.orientation = 'W';
+		else
+			game->ray.orientation = 'E';
+	}
+	else
+	{
+		if (game->ray.dir_y > 0)
+			game->ray.orientation = 'N';
+		else
+			game->ray.orientation = 'S';
+	}
+}
+
+void	calculate_line(t_game *game)
 {
 	if (game->ray.wall_dist <= 0)
 	{

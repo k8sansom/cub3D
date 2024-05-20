@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:53:18 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 11:59:32 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 19:18:59 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_duplicates(t_game *game)
 		!ft_strcmp(game->textures.east, game->textures.south) || \
 		!ft_strcmp(game->textures.west, game->textures.south) || \
 		!ft_strcmp(game->textures.east, game->textures.west))
-		full_exit("Error: duplicate texture file", game, 2);
+		exit(full_exit("Error: duplicate texture file", game, 2));
 }
 
 static int	check_xpms(char *north, char *south, char *east, char *west)
@@ -43,7 +43,6 @@ static int	check_xpms(char *north, char *south, char *east, char *west)
 		return (1);
 	return (0);
 }
-
 
 void	check_textures(t_game *game)
 {

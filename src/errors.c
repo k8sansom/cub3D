@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 10:32:03 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 18:19:20 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_arr(char **arr)
 	arr = NULL;
 }
 
-void	full_exit(char *s, t_game *game, int exit_code)
+int	full_exit(char *s, t_game *game, int exit_code)
 {
 	// if (game->win_ptr)
 	// 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -75,5 +75,5 @@ void	full_exit(char *s, t_game *game, int exit_code)
 		ft_fprintf(1, "%s\n", s);
 	free_textures(&game->textures);
 	//free_ray(game->ray);
-	exit(exit_code);
+	return(exit_code);
 }

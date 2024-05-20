@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 10:05:48 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 18:23:53 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ static void	check_at_end(t_game *game)
 		while (game->map[i][j] && ft_strchr(WHITESPACE, game->map[i][j]))
 			j++;
 		if (game->map[i][j] && game->map[i][j] == '0')
-			full_exit("Error: missing external walls!", game, 3);
+			exit(full_exit("Error: missing external walls!", game, 3));
 		else if (game->map[i][j] && game->map[i][j] != '1')
-			full_exit("Error: map not at end of file", game, 3);
+			exit(full_exit("Error: map not at end of file", game, 3));
 		i++;
 	}
 }
@@ -102,7 +102,7 @@ void	check_map(t_game *game)
 	int	j;
 
 	if (!game->map)
-		full_exit("Error: map missing", game, 3);
+		exit(full_exit("Error: map missing", game, 3));
 	check_at_end(game);
 	fill_spaces(game);
 	if (!check_vertical(game) || !check_horizontal(game))
@@ -114,12 +114,12 @@ void	check_map(t_game *game)
 		while (++j < (int)ft_strlen(game->map[i]) - 1)
 		{
 			if (!ft_strchr("NSEW01", game->map[i][j]))
-				full_exit("Error: incorrect character in map", game, 3);
+				exit(full_exit("Error: incorrect character in map", game, 3));
 			if (ft_strchr("NSEW", game->map[i][j]))
 				game->player_counter++;
 		}
 	}
 	if (game->player_counter != 1)
-		full_exit ("Error: player count incorrect", game, 3);
+		exit(full_exit ("Error: player count incorrect", game, 3));
 	check_player_position(game);
 }

@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:44:42 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/17 10:19:33 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:02:54 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	handle_movement(t_game *game)
 	if (!game->player.has_moved)
 	{
 		if (game->player.move_y == 1)
-			move_player_forward(game);
+			move_forward(game);
 		if (game->player.move_y == -1)
-			move_player_backward(game);
+			move_backward(game);
 		if (game->player.move_x == 1)
-			move_player_right(game);
+			move_right(game);
 		if (game->player.move_x == -1)
-			move_player_left(game);
+			move_left(game);
 	}
 }

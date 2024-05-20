@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:27:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 11:27:25 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 18:25:15 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	path_check(t_game *game)
 	temp.player_pos_y = game->player_pos_y;
 	temp.map = (char **)malloc((game->map_height + 1) * sizeof(char *));
 	if (!temp.map)
-		full_exit("Error: allocating memory", game, 5);
+		exit(full_exit("Error: allocating memory", game, 5));
 	i = 0;
 	while (i < game->map_height)
 	{
@@ -49,7 +49,7 @@ void	path_check(t_game *game)
 	if (temp.move_counter < 1)
 	{
 		free_arr(temp.map);
-		full_exit("Error: no valid path available", game, 6);
+		exit(full_exit("Error: no valid path available", game, 6));
 	}
 	free_arr(temp.map);
 }

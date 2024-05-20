@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 10:28:11 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/20 18:24:40 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	adding_rows(t_game *game, char *row)
 	game->cub_height++;
 	temp = (char **)malloc(sizeof(char *) * (game->cub_height + 1));
 	if (!temp)
-		full_exit(strerror(errno), game, errno);
+		exit(full_exit(strerror(errno), game, errno));
 	temp[game->cub_height] = NULL;
 	while (i < (game->cub_height - 1))
 	{
@@ -45,13 +45,13 @@ void	read_cub(t_game *game, char *cub)
 	row = NULL;
 	len = ft_strlen(cub);
 	if (ft_isdir(cub))
-		full_exit("Error: is a directory", game, 1);
+		exit(full_exit("Error: is a directory", game, 1));
 	if (cub[len - 4] != '.' || cub[len - 3] != 'c' || cub[len - 2] != 'u' \
 		|| cub[len - 1] != 'b')
-		full_exit("Error: file is not a .cub", game, 2);
+		exit(full_exit("Error: file is not a .cub", game, 2));
 	game->fd = open(cub, O_RDONLY);
 	if (game->fd < 0)
-		full_exit(strerror(errno), game, errno);
+		exit(full_exit(strerror(errno), game, errno));
 	while (1)
 	{
 		row = get_next_line(game->fd);
@@ -60,7 +60,7 @@ void	read_cub(t_game *game, char *cub)
 	}
 	game->cub[game->cub_height] = NULL;
 	if (!game->cub)
-		full_exit("Error: cub file is empty", game, 2);
+		exit(full_exit("Error: cub file is empty", game, 2));
 	close(game->fd);
 }
 

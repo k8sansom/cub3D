@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:47:01 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:05:08 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,32 @@
 
 # define MOUSE_S 0.005
 
+# define MMAP_PLAYER 0x00FF00
+# define MMAP_WALL 0x808080
+# define MMAP_FLOOR 0xE6E6E6
+# define MMAP_OTHER 0x404040
+
+# define COLOR_NORTH 0xFF0000  // Red
+# define COLOR_SOUTH 0x00FF00  // Green
+# define COLOR_EAST 0x0000FF   // Blue
+# define COLOR_WEST 0xFFFF00   // Yellow
+# define COLOR_FLOOR 0xCCCCCC   // Light Gray
+# define COLOR_CEILING 0x333333 // Dark Gray
+
+typedef struct s_mmap
+{
+	int		bits_per_pix;
+	int		line_length;
+	int		endian; // Pixel endianess (0: little endian, 1: big endian)
+	void	*img;
+	char	*addr;
+	int		view_dist;
+	int		size;
+	int		tile_size;
+	int		off_x;
+	int		off_y;
+}	t_mmap;
+
 typedef struct s_wall
 {
 	int		texture_x;
@@ -65,6 +91,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		step_x;
 	int		step_y;
+	char	orientation;
 }	t_ray;
 
 typedef struct s_textures
@@ -85,6 +112,7 @@ typedef struct s_textures
 	double			pos;
 	int				x;
 	int				y;
+	int				width;
 }	t_textures;
 
 typedef struct s_player
@@ -101,6 +129,15 @@ typedef struct s_player
 	int		move_y;
 	int		rotate;
 }	t_player;
+
+typedef struct s_image
+{
+	void	*img_ptr;
+	int		*img_data;
+	int		bits_per_pix;
+	int		size_line;
+	int		endian;
+}	t_image;
 
 typedef struct s_game
 {
@@ -124,17 +161,20 @@ typedef struct s_game
 	t_player	player;
 	t_ray		ray;
 	t_wall		wall;
+	t_mmap		mmap;
+	t_image		image;
 }	t_game;
 
 //init
 void		init_game(t_game *game);
+int			render_game(t_game *game);
 
 //parsing
 void		parse_file(t_game *game, char *map);
 void		read_cub(t_game *game, char *map);
 
 //errors
-void		full_exit(char *s, t_game *game, int exit_code);
+int			full_exit(char *s, t_game *game, int exit_code);
 void		free_arr(char **arr);
 void		ft_free(char **arr, int n);
 
@@ -148,38 +188,34 @@ size_t		convert_rgb(int *tab);
 void		read_map(t_game *game);
 void		check_map(t_game *game);
 
-//player
+void		init_player_dir(t_game *game);
 void		check_player_position(t_game *game);
-
-//controls
-static void	key_press(t_game *game, int key);
-static void	key_release(t_game *game, int key);
-static void	use_mouse(int x, int y, t_game *game);
 void		set_hooks(t_game *game);
 
 //raycasting
+void		calculate_wall_distance(t_game *game, bool vertical_wall);
 void		raycasting(t_game *game);
-static void	calculate_wall_distance(t_game *game, bool vertical_wall);
-static void	perform_dda(t_game *game);
-static void	set_steps(t_game *game);
-static void	init_ray(t_game *game, int current_x);
 
 //movement
 void		handle_movement(t_game *game);
-static void	move_right(t_game *game);
-static void	move_left(t_game *game);
-static void	move_forward(t_game *game);
-static void	move_backward(t_game *game);
 
-//rotation
-static void	handle_rotation(t_game *game);
 
-//raycasting utils
-static int	is_wall(t_game *game);
-static bool	is_valid_pos(t_game *game, double x, double y);
+void		handle_rotation(t_game *game);
+int			is_wall(t_game *game);
+bool		is_valid_pos(t_game *game, double x, double y);
 
 //draw walls
-void		calculate_line(int x, t_game *game);
-void		draw_vertical_line();
+void		wall_orientation(t_game *game, bool vertical_wall);
+void		calculate_line(t_game *game);
+void		draw_vertical_line(t_game *game, int x);
+void		render_floor_and_ceiling(t_game *game);
+int			get_wall_color(t_game *game);
+
+//minimap
+void		init_minimap(t_game *game);
+int			get_mmap_offset(t_mmap mmap, int mapsize, int pos);
+void		render_minimap(t_game *game);
+void		set_tile_pixels(t_game *game, int start_x, int start_y, int color);
+void		draw_minimap_tile(t_game *game, int x, int y);
 
 #endif

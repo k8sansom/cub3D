@@ -6,16 +6,16 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 12:47:46 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:20:12 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	key_press(t_game *game, int key)
+static int	key_press(t_game *game, int key)
 {
 	if (key == KEY_ESC)
-		full_exit("Giving up?!", game, 0);
+		exit(full_exit("Giving up?!", game, 0));
 	else if (key == KEY_W)
 		game->player.move_y = 1;
 	else if (key == KEY_S)
@@ -28,9 +28,10 @@ static void	key_press(t_game *game, int key)
 		game->player.rotate -= 1;
 	else if (key == KEY_RIGHT)
 		game->player.rotate += 1;
+	return (0);
 }
 
-static void	key_release(t_game *game, int key)
+static int	key_release(t_game *game, int key)
 {
 	if (key == KEY_W)
 	{
@@ -54,9 +55,10 @@ static void	key_release(t_game *game, int key)
 	}
 	else if (key == KEY_LEFT || key == KEY_RIGHT)
 		game->player.rotate = 0;
+	return (0);
 }
 
-static void	use_mouse(int x, int y, t_game *game)
+static int	use_mouse(int x, t_game *game)
 {
 	static int	old_x;
 	static int	old_y;
@@ -69,12 +71,13 @@ static void	use_mouse(int x, int y, t_game *game)
 		old_y = game->win_height / 2;
 		mlx_mouse_move(game->mlx_ptr, game->win_ptr, old_x, old_y);
 		init = 1;
-		return ;
+		return (0);
 	}
 	delta_x = x - old_x;
 	if (delta_x)
 		game->player.rotate += delta_x * MOUSE_S;
 	mlx_mouse_move(game->mlx_ptr, game->win_ptr, old_x, old_y);
+	return (0);
 }
 
 void	set_hooks(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/17 13:13:06 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:04:02 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	perform_dda(t_game *game)
 	}
 }
 
-static void	calculate_wall_distance(t_game *game, bool vertical_wall)
+void	calculate_wall_distance(t_game *game, bool vertical_wall)
 {
 	int	tex_x;
 
@@ -104,6 +104,7 @@ static void	calculate_wall_distance(t_game *game, bool vertical_wall)
 		game->ray.wall_pos = game->ray.pos_x + game->ray.wall_dist
 			* game->ray.dir_x;
 	}
+	wall_orientation(game, vertical_wall);
 	game->ray.wall_pos -= floor(game->ray.wall_pos);
 	tex_x = (int)(game->ray.wall_pos * (double)(game->textures.width));
 	if ((vertical_wall && game->ray.dir_x > 0)
@@ -122,7 +123,7 @@ void	raycasting(t_game *game)
 	{
 		init_ray(game, current_x);
 		perform_dda(game);
-		calculate_line(current_x, game);
+		calculate_line(game);
 		current_x++;
 		game->ray.current_column++;
 	}

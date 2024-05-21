@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 19:16:48 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:47:57 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	*get_rgbs(t_game *game, char *str)
 	if (i != 3)
 	{
 		free_arr(rgb_arr);
-		exit(full_exit("Error: with color rgb", game, 1));
+		full_exit("Error: with color rgb", game, 1);
 	}
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 	{
 		free_arr(rgb_arr);
-		exit(full_exit("Malloc error", game, 1));
+		full_exit("Malloc error", game, 1);
 	}
 	i = -1;
 	while (rgb_arr[++i])
@@ -75,19 +75,19 @@ int	*get_rgbs(t_game *game, char *str)
 static char	*copy_texture(t_game *game, char *src, char type)
 {
 	if (type == 'N' && game->textures.north)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (type == 'S' && game->textures.south)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (type == 'E' && game->textures.east)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (type == 'W' && game->textures.west)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (type == 'F' && game->textures.floor_str)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (type == 'C' && game->textures.ceiling_str)
-		exit(full_exit("Error: duplicate texture", game, 3));
+		full_exit("Error: duplicate texture", game, 3);
 	if (!src)
-		exit(full_exit("Error: texture path missing", game, 3));
+		full_exit("Error: texture path missing", game, 3);
 	return (ft_strdup(src));
 }
 

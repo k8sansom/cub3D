@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/21 12:22:25 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 17:36:41 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+void	set_pixel(t_game *game, int x, int y, int color)
+{
+	int	pixel_index;
+
+	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	{
+		pixel_index = y * (game->image.size_line / 4) + x;
+		game->image.img_addr[pixel_index] = color;
+	}
+}
+
 void	draw_vertical_line(t_game *game, int x)
 {
-	int	draw_start;
-	int	draw_end;
 	int	y;
 	int	color;
-	int	*pixel;
 
 	color = get_wall_color(game);
-	draw_start = game->wall.draw_start;
-	draw_end = game->wall.draw_end;
-	y = draw_start;
-	while (y < draw_end)
+	//printf("d start is %i, d end is %i\n", game->wall.draw_start, game->wall.draw_end);
+	y = game->wall.draw_start;
+	while (y <= game->wall.draw_end)
 	{
-		pixel = (int *)(game->image.img_addr + y
-				* game->image.size_line / 4 + x);
-		pixel = &color;
+		set_pixel(game, x, y, color);
 		y++;
 	}
 }
@@ -47,71 +52,3 @@ int	get_wall_color(t_game *game)
 		return (0xFFFFFF);
 }
 
-void	render_floor_and_ceiling(t_game *game)
-{
-	int		y;
-	int		x;
-	size_t	color;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		if (y < WIN_HEIGHT / 2)
-			color = game->textures.hex_ceiling;
-		else
-		{
-			color = game->textures.hex_floor;
-		}
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			*(int *)(game->image.img_addr + y
-					* game->image.size_line / 4 + x) = color;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	wall_orientation(t_game *game, bool vertical_wall)
-{
-	if (vertical_wall)
-	{
-		if (game->ray.dir_x > 0)
-			game->ray.orientation = WE;
-		else
-			game->ray.orientation = EA;
-	}
-	else
-	{
-		if (game->ray.dir_y > 0)
-			game->ray.orientation = NO;
-		else
-			game->ray.orientation = SO;
-	}
-}
-
-void	calculate_line(t_game *game)
-{
-	if (game->ray.wall_dist <= 0)
-	{
-		game->wall.line_height = game->map_height;
-		game->wall.draw_start = 0;
-		game->wall.draw_end = game->map_height - 1;
-	}
-	else
-	{
-		game->wall.line_height = (int)(game->map_height / game->ray.wall_dist);
-		game->wall.draw_start = (game->map_height - game->wall.line_height) / 2;
-		game->wall.draw_end = game->wall.draw_start + game->wall.line_height;
-		if (game->wall.draw_start < 0)
-			game->wall.draw_start = 0;
-		if (game->wall.draw_end >= game->map_height)
-			game->wall.draw_end = game->map_height - 1;
-	}
-	if (game->wall.draw_start > game->wall.draw_end)
-	{
-		game->wall.draw_start = (game->map_height - 1) / 2;
-		game->wall.draw_end = game->wall.draw_start + 1;
-	}
-}

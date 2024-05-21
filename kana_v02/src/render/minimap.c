@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:06:58 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/20 18:22:18 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:46:11 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_minimap(t_game *game)
 	height = game->mmap.size * game->mmap.tile_size;
 	game->mmap.img = mlx_new_image(game->mlx_ptr, width, height);
 	if (!game->mmap.img)
-		exit(full_exit("Failed to create a minimap image\n", game, 0));
+		full_exit("Failed to create a minimap image\n", game, 0);
 	game->mmap.addr = mlx_get_data_addr(game->mmap.img,
 			&game->mmap.bits_per_pix,
 			&game->mmap.line_length, &game->mmap.endian);

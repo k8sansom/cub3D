@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:53:18 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 19:18:59 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:47:45 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_duplicates(t_game *game)
 		!ft_strcmp(game->textures.east, game->textures.south) || \
 		!ft_strcmp(game->textures.west, game->textures.south) || \
 		!ft_strcmp(game->textures.east, game->textures.west))
-		exit(full_exit("Error: duplicate texture file", game, 2));
+		full_exit("Error: duplicate texture file", game, 2);
 }
 
 static int	check_xpms(char *north, char *south, char *east, char *west)
@@ -52,10 +52,10 @@ void	check_textures(t_game *game)
 	if (!game->textures.north || !game->textures.south || !game->textures.west \
 		|| !game->textures.east || !game->textures.ceiling_str || \
 		!game->textures.floor_str)
-		exit(full_exit("Error: texture path missing", game, 2));
+		full_exit("Error: texture path missing", game, 2);
 	if (check_xpms(game->textures.north, game->textures.south, \
 				game->textures.east, game->textures.west))
-		exit(full_exit("Error: texture file is not xpm", game, 2));
+		full_exit("Error: texture file is not xpm", game, 2);
 	check_duplicates(game);
 	game->textures.ceiling = get_rgbs(game, game->textures.ceiling_str);
 	game->textures.floor = get_rgbs(game, game->textures.floor_str);
@@ -64,7 +64,7 @@ void	check_textures(t_game *game)
 		if ((game->textures.floor[i] < 0 || game->textures.floor[i] > 255) \
 			|| (game->textures.ceiling[i] < 0 || \
 			game->textures.ceiling[i] > 255))
-			exit(full_exit("Error: with color rgb", game, 2));
+			full_exit("Error: with color rgb", game, 2);
 		i++;
 	}
 	game->textures.hex_ceiling = convert_rgb(game->textures.ceiling);

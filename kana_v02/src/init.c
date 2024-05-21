@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 12:26:05 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 17:46:55 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ void	init_mlx(t_game *game)
 	game->image.img_ptr = mlx_new_image(game->mlx_ptr, \
 			WIN_WIDTH, WIN_HEIGHT);
 	if (!game->image.img_ptr)
-		exit(full_exit("Failed to create a new image", game, 1));
+		full_exit("Failed to create a new image", game, 1);
 	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
 			&game->image.bits_per_pix,
 			&game->image.size_line,
 			&game->image.endian);
-	return ;
 }
 
 static void	init_other(t_game *game)

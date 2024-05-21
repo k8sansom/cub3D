@@ -6,18 +6,18 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/20 19:04:02 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:01:52 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static void	init_ray(t_game *game, int current_x)
+void	init_ray(t_game *game, int current_x)
 {
 	double	camera_x;
 
 	game->ray.current_column = current_x;
-	camera_x = 2 * current_x / (double)game->map_width - 1;
+	camera_x = 2 * current_x / (double)WIN_WIDTH - 1;
 	game->ray.dir_x = game->player.dir_x + game->player.plane_x * camera_x;
 	game->ray.dir_y = game->player.dir_y + game->player.plane_y * camera_x;
 	if (game->ray.dir_x == 0)
@@ -30,7 +30,7 @@ static void	init_ray(t_game *game, int current_x)
 		game->ray.delta_dist_y = fabs(1 / game->ray.dir_y);
 }
 
-static void	set_steps(t_game *game)
+void	set_steps(t_game *game)
 {
 	if (game->ray.dir_x < 0)
 	{
@@ -58,7 +58,7 @@ static void	set_steps(t_game *game)
 	}
 }
 
-static void	perform_dda(t_game *game)
+void	perform_dda(t_game *game)
 {
 	bool	vertical_wall;
 
@@ -87,10 +87,14 @@ static void	perform_dda(t_game *game)
 
 void	calculate_wall_distance(t_game *game, bool vertical_wall)
 {
-	int	tex_x;
+//	int	tex_x;
 
 	game->ray.hit_wall = true;
 	if (vertical_wall)
+		game->ray.wall_dist = game->ray.side_dist_x - game->ray.delta_dist_x;
+	else
+		game->ray.wall_dist = game->ray.side_dist_y - game->ray.delta_dist_y;
+/*	if (vertical_wall)
 	{
 		game->ray.wall_dist = fabs((game->ray.pos_x - game->player.pos_x)
 				/ game->ray.dir_x);
@@ -101,30 +105,38 @@ void	calculate_wall_distance(t_game *game, bool vertical_wall)
 	{
 		game->ray.wall_dist = fabs((game->ray.pos_y - game->player.pos_y)
 				/ game->ray.dir_y);
-		game->ray.wall_pos = game->ray.pos_x + game->ray.wall_dist
-			* game->ray.dir_x;
-	}
+	//	game->ray.wall_pos = game->ray.pos_x + game->ray.wall_dist
+	//		* game->ray.dir_x;
+	}*/
+	printf("wall dist is %f\n", game->ray.wall_dist);
 	wall_orientation(game, vertical_wall);
-	game->ray.wall_pos -= floor(game->ray.wall_pos);
+	/*game->ray.wall_pos -= floor(game->ray.wall_pos);
 	tex_x = (int)(game->ray.wall_pos * (double)(game->textures.width));
 	if ((vertical_wall && game->ray.dir_x > 0)
 		|| (!vertical_wall && game->ray.dir_y < 0))
 		tex_x = game->textures.width - tex_x - 1;
-	game->wall.texture_x = tex_x;
+	game->wall.texture_x = tex_x;*/
 }
 
-void	raycasting(t_game *game)
+void	calculate_line(t_game *game)
 {
-	int	current_x;
-
-	current_x = 0;
-	game->ray.current_column = 0;
-	while (current_x < game->map_width)
+	/*if (game->ray.wall_dist <= 0)
 	{
-		init_ray(game, current_x);
-		perform_dda(game);
-		calculate_line(game);
-		current_x++;
-		game->ray.current_column++;
+		game->wall.line_height = game->map_height;
+		game->wall.draw_start = 0;
+		game->wall.draw_end = game->map_height - 1;
+	}*/
+	game->wall.line_height = (int)(game->map_height / game->ray.wall_dist);
+	game->wall.draw_start = (game->map_height - game->wall.line_height) / 2;
+	game->wall.draw_end = game->wall.draw_start + game->wall.line_height;
+	if (game->wall.draw_start < 0)
+		game->wall.draw_start = 0;
+	if (game->wall.draw_end >= game->map_height)
+		game->wall.draw_end = game->map_height - 1;
+	if (game->wall.draw_start > game->wall.draw_end)
+	{
+		game->wall.draw_start = (game->map_height - 1) / 2;
+		game->wall.draw_end = game->wall.draw_start + 1;
 	}
+//	printf("d start is %i, d end is %i\n", game->wall.draw_start, game->wall.draw_end);
 }

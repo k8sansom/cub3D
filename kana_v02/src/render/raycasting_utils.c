@@ -6,11 +6,29 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:32:34 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/20 18:53:45 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:25:28 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	wall_orientation(t_game *game, bool vertical_wall)
+{
+	if (vertical_wall)
+	{
+		if (game->ray.dir_x > 0)
+			game->ray.orientation = WE;
+		else
+			game->ray.orientation = EA;
+	}
+	else
+	{
+		if (game->ray.dir_y > 0)
+			game->ray.orientation = NO;
+		else
+			game->ray.orientation = SO;
+	}
+}
 
 int	is_wall(t_game *game)
 {

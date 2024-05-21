@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 12:20:46 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:55:55 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,11 @@ void		check_player_position(t_game *game);
 void		set_hooks(t_game *game);
 
 //raycasting
+void		init_ray(t_game *game, int current_x);
+void		set_steps(t_game *game);
+void		perform_dda(t_game *game);
 void		calculate_wall_distance(t_game *game, bool vertical_wall);
+void		calculate_line(t_game *game);
 void		raycasting(t_game *game);
 
 //movement
@@ -210,8 +214,8 @@ int			is_wall(t_game *game);
 bool		is_valid_pos(t_game *game, double x, double y);
 
 //draw walls
+void		set_pixel(t_game *game, int x, int y, int color);
 void		wall_orientation(t_game *game, bool vertical_wall);
-void		calculate_line(t_game *game);
 void		draw_vertical_line(t_game *game, int x);
 void		render_floor_and_ceiling(t_game *game);
 int			get_wall_color(t_game *game);

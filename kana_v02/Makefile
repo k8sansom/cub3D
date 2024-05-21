@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+         #
+#    By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 16:07:51 by ksansom           #+#    #+#              #
-#    Updated: 2024/05/21 10:32:21 by ksansom          ###   ########.fr        #
+#    Updated: 2024/05/21 15:01:14 by avoronko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS =	src/controls.c \
 		src/render/movement.c \
 		src/render/raycasting_utils.c \
 		src/render/raycasting.c \
+		src/render/render.c \
 		src/render/rotation.c \
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 18:19:20 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:44:50 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,16 @@ int	full_exit(char *s, t_game *game, int exit_code)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	if (game->mlx_ptr)
 		mlx_destroy_display(game->mlx_ptr);
-	 if (game->fd)
-	 	close(game->fd);
+	if (game->fd)
+		close(game->fd);
 	if (game->cub)
-	 	free_arr(game->cub);
-	 if (game->map)
-	  	free_arr(game->map);
+		free_arr(game->cub);
+	if (game->map)
+		free_arr(game->map);
 	if (s)
 		ft_fprintf(1, "%s\n", s);
-	free_textures(&game->textures);
+//	free_textures(&game->textures);
 	//free_ray(game->ray);
-	return(exit_code);
+	exit(exit_code);
+	return (0);
 }

@@ -38,7 +38,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	}
 	mlx_destroy_image(data->mlx, tmp.img);
 	return (buffer);
-}
+} 
 
 void	init_textures(t_data *data)
 {

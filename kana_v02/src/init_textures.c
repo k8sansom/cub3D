@@ -2,7 +2,30 @@
 
 static int	convert_xpm(t_game *game, char *path)
 {
+	t_img	tmp;
+	int		*buffer;
+	int		x;
+	int		y;
 
+	init_tex_image(game, &tmp, path);
+	buffer = ft_calloc(1,
+			sizeof(buffer * game->textures.size * game->textures.size));
+	if (!buffer)
+		exit(full_exit("Error: malloc", game, 3));
+	y = 0;
+	while (y < game->textures.size)
+	{
+		x = 0;
+		while (x < game->textures.size)
+		{
+			buffer[y * game->textures.size + x]
+				= tmp.addr[y * game->textures.size + x];
+			++x;
+		}
+		y++;
+	}
+	mlx_destroy_image(data->mlx, tmp.img);
+	return (buffer);
 }
 
 void	init_textures(t_game *game)

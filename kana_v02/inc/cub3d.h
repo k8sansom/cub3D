@@ -141,7 +141,7 @@ typedef struct s_player
 typedef struct s_image
 {
 	void	*img_ptr;
-	int		*img_data;
+	int		*img_addr;
 	int		bits_per_pix;
 	int		size_line;
 	int		endian;

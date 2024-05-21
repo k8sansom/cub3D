@@ -26,7 +26,7 @@ void	draw_vertical_line(t_game *game, int x)
 	y = draw_start;
 	while (y < draw_end)
 	{
-		pixel = (int *)(game->image.img_data + y
+		pixel = (int *)(game->image.img_addr + y
 				* game->image.size_line / 4 + x);
 		pixel = &color;
 		y++;
@@ -65,7 +65,7 @@ void	render_floor_and_ceiling(t_game *game)
 		x = 0;
 		while (x < game->win_width)
 		{
-			*(int *)(game->image.img_data + y
+			*(int *)(game->image.img_addr + y
 					* game->image.size_line / 4 + x) = color;
 			x++;
 		}

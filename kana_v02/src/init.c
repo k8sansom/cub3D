@@ -27,7 +27,7 @@ void	init_mlx(t_game *game)
 		game->win_width, game->win_height);
 	if (!game->image.img_ptr)
 		exit(full_exit("Failed to create a new image", game, 1));
-	game->image.img_data = (int *)mlx_get_data_addr(game->image.img_ptr,
+	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
 			&game->image.bits_per_pix,
 			&game->image.size_line,
 			&game->image.endian);

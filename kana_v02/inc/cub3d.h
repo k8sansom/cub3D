@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 19:05:08 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:30:25 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@
 # define COLOR_FLOOR 0xCCCCCC   // Light Gray
 # define COLOR_CEILING 0x333333 // Dark Gray
 
-typedef enum tex_index
+enum e_tex_index
 {
 	NO,
 	SO,
 	EA,
 	WE
-}
+};
 
 typedef struct s_mmap
 {
@@ -165,6 +165,8 @@ typedef struct s_game
 	char		**cub;
 	char		**map;
 
+	int			**texture_arr;
+
 	t_textures	textures;
 	t_player	player;
 	t_ray		ray;
@@ -177,7 +179,8 @@ typedef struct s_game
 void		init_game(t_game *game);
 int			render_game(t_game *game);
 void		init_mlx(t_game *game);
-void		init_textures(t_game *game);
+void		init_texture_arr(t_game *game);
+void		init_tex_image(t_game *game, t_image *image, char *path);
 
 //parsing
 void		parse_file(t_game *game, char *map);

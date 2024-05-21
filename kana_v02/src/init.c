@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 19:11:03 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:39:32 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ void	init_mlx(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		full_exit("Error: initializing mlx", game, 6);
-	game->win_ptr= mlx_new_window(data->mlx, 640, 480, "Cub3D");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, 640, 480, "Cub3D");
 	if (!game->win_ptr)
 		full_exit("Error: initializing mlx", game, 6);
 	// if (BONUS)
 	// 	mlx_mouse_move(data->mlx, data->win, data->win_width / 2,
 	// 		data->win_height / 2);
-	game->image.img_ptr = mlx_new_image(game->mlx_ptr,
-		game->win_width, game->win_height);
-	if (!game->image.img_ptr)
-		exit(full_exit("Failed to create a new image", game, 1));
-	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
-			&game->image.bits_per_pix,
-			&game->image.size_line,
-			&game->image.endian);
+	// game->image.img_ptr = mlx_new_image(game->mlx_ptr,
+	// 	640, 480);
+	// if (!game->image.img_ptr)
+	// 	exit(full_exit("Failed to create a new image", game, 1));
+	// game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
+	// 		&game->image.bits_per_pix,
+	// 		&game->image.size_line,
+	// 		&game->image.endian);
 	return ;
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+         #
+#    By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 16:07:51 by ksansom           #+#    #+#              #
-#    Updated: 2024/05/20 19:08:01 by avoronko         ###   ########.fr        #
+#    Updated: 2024/05/21 10:32:21 by ksansom          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME =	cub3d
 SRCS =	src/controls.c \
 		src/errors.c \
 		src/init_player_dir.c \
+		src/init_textures.c \
 		src/init.c \
 		src/main.c \
 		src/map_check.c \

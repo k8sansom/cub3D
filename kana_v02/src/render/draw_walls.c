@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/21 12:04:39 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:22:25 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_vertical_line(t_game *game, int x)
 	int	draw_start;
 	int	draw_end;
 	int	y;
-	int	*color;
+	int	color;
 	int	*pixel;
 
 	color = get_wall_color(game);
@@ -33,16 +33,16 @@ void	draw_vertical_line(t_game *game, int x)
 	}
 }
 
-int	*get_wall_color(t_game *game)
+int	get_wall_color(t_game *game)
 {
 	if (game->ray.orientation == NO)
-		return (game->texture_arr[NO]);
+		return (0xFF0000/*game->texture_arr[NO]*/);
 	else if (game->ray.orientation == SO)
-		return (game->texture_arr[SO]);
+		return (0x00FF00/*game->texture_arr[SO]*/);
 	else if (game->ray.orientation == EA)
-		return (game->texture_arr[EA]);
+		return (0x0000FF/*game->texture_arr[EA]*/);
 	else if (game->ray.orientation == WE)
-		return (game->texture_arr[WE]);
+		return (0xFFFF00/*game->texture_arr[WE]*/);
 	else
 		return (0xFFFFFF);
 }
@@ -54,16 +54,16 @@ void	render_floor_and_ceiling(t_game *game)
 	size_t	color;
 
 	y = 0;
-	while (y < game->win_height)
+	while (y < WIN_HEIGHT)
 	{
-		if (y < game->win_height / 2)
+		if (y < WIN_HEIGHT / 2)
 			color = game->textures.hex_ceiling;
 		else
 		{
 			color = game->textures.hex_floor;
 		}
 		x = 0;
-		while (x < game->win_width)
+		while (x < WIN_WIDTH)
 		{
 			*(int *)(game->image.img_addr + y
 					* game->image.size_line / 4 + x) = color;

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 12:00:21 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:26:05 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	init_mlx(t_game *game)
 		full_exit("Error: initializing mlx", game, 6);
 	// 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
 	// 		WIN_HEIGHT / 2);
-	// game->image.img_ptr = mlx_new_image(game->mlx_ptr,
-	// 	WIN_WIDTH, WIN_HEIGHT);
-	// if (!game->image.img_ptr)
-	// 	exit(full_exit("Failed to create a new image", game, 1));
-	// game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
-	// 		&game->image.bits_per_pix,
-	// 		&game->image.size_line,
-	// 		&game->image.endian);
+	game->image.img_ptr = mlx_new_image(game->mlx_ptr, \
+			WIN_WIDTH, WIN_HEIGHT);
+	if (!game->image.img_ptr)
+		exit(full_exit("Failed to create a new image", game, 1));
+	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
+			&game->image.bits_per_pix,
+			&game->image.size_line,
+			&game->image.endian);
 	return ;
 }
 
@@ -71,7 +71,5 @@ void	init_game(t_game *game)
 	ft_memset(game, 0, sizeof(t_game));
 	init_player(&game->player);
 	init_textures(&game->textures);
-	game->win_height = 720;
-	game->win_width = 960;
 	init_other(game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/20 18:20:12 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:23:38 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	use_mouse(int x, t_game *game)
 
 	if (!init)
 	{
-		old_x = game->win_width / 2;
-		old_y = game->win_height / 2;
+		old_x = WIN_WIDTH / 2;
+		old_y = WIN_HEIGHT / 2;
 		mlx_mouse_move(game->mlx_ptr, game->win_ptr, old_x, old_y);
 		init = 1;
 		return (0);

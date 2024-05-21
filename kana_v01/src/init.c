@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 16:58:34 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:23:38 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	init_game(t_game *game)
 	init_player(&game->player);
 	init_textures(&game->textures);
 	init_ray(&game->ray);
-	game->win_height = 720;
-	game->win_width = 960;
+	WIN_HEIGHT = 720;
+	WIN_WIDTH = 960;
 }

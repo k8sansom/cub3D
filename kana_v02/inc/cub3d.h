@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 11:58:17 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:20:46 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@
 # define MMAP_FLOOR 0xE6E6E6
 # define MMAP_OTHER 0x404040
 
-# define COLOR_NORTH 0xFF0000  // Red
-# define COLOR_SOUTH 0x00FF00  // Green
-# define COLOR_EAST 0x0000FF   // Blue
-# define COLOR_WEST 0xFFFF00   // Yellow
-# define COLOR_FLOOR 0xCCCCCC   // Light Gray
-# define COLOR_CEILING 0x333333 // Dark Gray
 
 enum e_tex_index
 {

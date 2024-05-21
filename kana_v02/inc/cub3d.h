@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 10:30:25 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/21 11:58:17 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <fcntl.h>
 # include <sys/errno.h>
 
-# define IMG_W	32
-# define IMG_H	32
+# define WIN_WIDTH	640
+# define WIN_HEIGHT	480
 
 # define WHITESPACE "	 /\r/\n/\f"
 
@@ -99,7 +99,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		step_x;
 	int		step_y;
-	char	orientation;
+	int		orientation;
 }	t_ray;
 
 typedef struct s_textures
@@ -152,8 +152,6 @@ typedef struct s_game
 	int			fd;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			win_height;
-	int			win_width;
 	int			map_height;
 	int			cub_height;
 	int			map_width;

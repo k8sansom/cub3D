@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/20 18:59:34 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:04:39 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_vertical_line(t_game *game, int x)
 	int	draw_start;
 	int	draw_end;
 	int	y;
-	int	color;
+	int	*color;
 	int	*pixel;
 
 	color = get_wall_color(game);
@@ -33,34 +33,34 @@ void	draw_vertical_line(t_game *game, int x)
 	}
 }
 
-int	get_wall_color(t_game *game)
+int	*get_wall_color(t_game *game)
 {
-	if (game->ray.orientation == 'N')
-		return (COLOR_NORTH);
-	else if (game->ray.orientation == 'S')
-		return (COLOR_SOUTH);
-	else if (game->ray.orientation == 'E')
-		return (COLOR_EAST);
-	else if (game->ray.orientation == 'W')
-		return (COLOR_WEST);
+	if (game->ray.orientation == NO)
+		return (game->texture_arr[NO]);
+	else if (game->ray.orientation == SO)
+		return (game->texture_arr[SO]);
+	else if (game->ray.orientation == EA)
+		return (game->texture_arr[EA]);
+	else if (game->ray.orientation == WE)
+		return (game->texture_arr[WE]);
 	else
 		return (0xFFFFFF);
 }
 
 void	render_floor_and_ceiling(t_game *game)
 {
-	int	y;
-	int	x;
-	int	color;
+	int		y;
+	int		x;
+	size_t	color;
 
 	y = 0;
 	while (y < game->win_height)
 	{
 		if (y < game->win_height / 2)
-			color = COLOR_CEILING;
+			color = game->textures.hex_ceiling;
 		else
 		{
-			color = COLOR_FLOOR;
+			color = game->textures.hex_floor;
 		}
 		x = 0;
 		while (x < game->win_width)
@@ -78,16 +78,16 @@ void	wall_orientation(t_game *game, bool vertical_wall)
 	if (vertical_wall)
 	{
 		if (game->ray.dir_x > 0)
-			game->ray.orientation = 'W';
+			game->ray.orientation = WE;
 		else
-			game->ray.orientation = 'E';
+			game->ray.orientation = EA;
 	}
 	else
 	{
 		if (game->ray.dir_y > 0)
-			game->ray.orientation = 'N';
+			game->ray.orientation = NO;
 		else
-			game->ray.orientation = 'S';
+			game->ray.orientation = SO;
 	}
 }
 

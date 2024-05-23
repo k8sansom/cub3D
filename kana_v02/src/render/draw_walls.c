@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/21 17:36:41 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:51:01 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	draw_vertical_line(t_game *game, int x)
 	int	color;
 
 	color = get_wall_color(game);
-	//printf("d start is %i, d end is %i\n", game->wall.draw_start, game->wall.draw_end);
-	y = game->wall.draw_start;
-	while (y <= game->wall.draw_end)
+	printf("d start is %d, d end is %d\n", game->ray.draw_start, game->ray.draw_end);
+	y = game->ray.draw_start;
+	while (y <= game->ray.draw_end)
 	{
 		set_pixel(game, x, y, color);
 		y++;

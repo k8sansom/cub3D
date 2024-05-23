@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:46:55 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:55:38 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	init_other(t_game *game)
 {
 	ft_memset(&game->ray, 0, sizeof(t_ray));
 	ft_memset(&game->mmap, 0, sizeof(t_mmap));
-	ft_memset(&game->wall, 0, sizeof(t_wall));
 	ft_memset(&game->image, 0, sizeof(t_image));
 }
 

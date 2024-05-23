@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:32:34 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/10 13:34:06 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:55:44 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,16 @@ int	is_wall(t_game *game)
 	if (game->ray.pos_x < 0 || game->ray.pos_x >= game->map_width
 		|| game->ray.pos_y < 0 || game->ray.pos_y >= game->map_height)
 		return (1);
-	return (game->map[(int)game->ray.pos_y][(int)game->ray.pos_x] == '1');
+	else
+	{
+		if (game->map[(int)game->ray.pos_y][(int)game->ray.pos_x] == '1')
+		{
+			game->ray.hit_wall = true;
+			return (0);
+		}
+		else
+			return (1);
+	}
 }
 void	draw_vertical_line(int x, double wall_dist, t_game *game)
 {

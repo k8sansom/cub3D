@@ -6,15 +6,15 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:32:34 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/21 17:25:28 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:59:34 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	wall_orientation(t_game *game, bool vertical_wall)
+void	wall_orientation(t_game *game)
 {
-	if (vertical_wall)
+	if (game->ray.vertical_wall)
 	{
 		if (game->ray.dir_x > 0)
 			game->ray.orientation = WE;
@@ -35,7 +35,13 @@ int	is_wall(t_game *game)
 	if (game->ray.pos_x < 0 || game->ray.pos_x >= game->map_width
 		|| game->ray.pos_y < 0 || game->ray.pos_y >= game->map_height)
 		return (1);
-	return (game->map[(int)game->ray.pos_y][(int)game->ray.pos_x] == '1');
+	else
+	{
+		if (game->map[(int)game->ray.pos_y][(int)game->ray.pos_x] == '1')
+			return (1);
+		else
+			return (0);
+	}
 }
 
 bool	is_valid_pos(t_game *game, double x, double y)

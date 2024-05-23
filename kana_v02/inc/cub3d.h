@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 16:55:55 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:55:54 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,6 @@ typedef struct s_mmap
 	int		off_y;
 }	t_mmap;
 
-typedef struct s_wall
-{
-	int		texture_x;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-}	t_wall;
-
 typedef struct s_ray
 {
 	bool	hit_wall;
@@ -94,6 +86,10 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		orientation;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	bool	vertical_wall;
 }	t_ray;
 
 typedef struct s_textures
@@ -162,7 +158,6 @@ typedef struct s_game
 	t_textures	textures;
 	t_player	player;
 	t_ray		ray;
-	t_wall		wall;
 	t_mmap		mmap;
 	t_image		image;
 }	t_game;
@@ -201,13 +196,11 @@ void		set_hooks(t_game *game);
 void		init_ray(t_game *game, int current_x);
 void		set_steps(t_game *game);
 void		perform_dda(t_game *game);
-void		calculate_wall_distance(t_game *game, bool vertical_wall);
-void		calculate_line(t_game *game);
+void		calculate_wall(t_game *game);
 void		raycasting(t_game *game);
 
 //movement
 void		handle_movement(t_game *game);
-
 
 void		handle_rotation(t_game *game);
 int			is_wall(t_game *game);
@@ -215,7 +208,7 @@ bool		is_valid_pos(t_game *game, double x, double y);
 
 //draw walls
 void		set_pixel(t_game *game, int x, int y, int color);
-void		wall_orientation(t_game *game, bool vertical_wall);
+void		wall_orientation(t_game *game);
 void		draw_vertical_line(t_game *game, int x);
 void		render_floor_and_ceiling(t_game *game);
 int			get_wall_color(t_game *game);

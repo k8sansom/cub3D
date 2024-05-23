@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 12:23:38 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/23 12:54:50 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_mlx(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		full_exit("Error: initializing mlx", game, 6);
-	game->win_ptr= mlx_new_window(data->mlx, 640, 480, "Cub3D");
+	game->win_ptr= mlx_new_window(game->mlx_ptr, 640, 480, "Cub3D");
 	if (!data->win)
 		full_exit("Error: initializing mlx", game, 6);
 	// if (BONUS)

@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:45:58 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:11:34 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	key_release(t_game *game, int key)
 	return (0);
 }
 
-static int	use_mouse(int x, t_game *game)
+/*static int	use_mouse(int x, t_game *game)
 {
 	static int	old_x;
 	static int	old_y;
@@ -78,13 +78,13 @@ static int	use_mouse(int x, t_game *game)
 		game->player.rotate += delta_x * MOUSE_S;
 	mlx_mouse_move(game->mlx_ptr, game->win_ptr, old_x, old_y);
 	return (0);
-}
+}*/
 
 void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, full_exit, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release, game);
-	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, use_mouse, game);
-	mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
+//	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, use_mouse, game);
+//	mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
 }

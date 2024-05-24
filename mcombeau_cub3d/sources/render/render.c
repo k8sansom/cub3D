@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:04 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/12 13:45:01 by mcombeau         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:08:51 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	render_frame(t_data *data)
 static void	render_raycast(t_data *data)
 {
 	init_texture_pixels(data);
-	init_ray(&data->ray);
+	init_ray(&data->ray); 
 	raycasting(&data->player, data);
 	render_frame(data);
 }

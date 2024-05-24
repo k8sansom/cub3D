@@ -6,29 +6,11 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:29:15 by ksansom           #+#    #+#             */
-/*   Updated: 2024/01/08 11:20:27 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/24 11:18:56 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
-
-static char	*ft_strndup(const char *src, size_t n)
-{
-	size_t	i;
-	char	*dest;
-
-	i = 0;
-	dest = (char *)malloc(sizeof(char) * (n + 1));
-	if (!dest)
-		return (0);
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 static int	ft_count_splits(const char *str, char c)
 {

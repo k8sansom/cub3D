@@ -6,7 +6,7 @@
 #    By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 11:51:45 by ksansom           #+#    #+#              #
-#    Updated: 2024/01/04 15:22:34 by ksansom          ###   ########.fr        #
+#    Updated: 2024/05/24 11:15:21 by ksansom          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS = 	src/ft_atoi.c \
 		src/ft_strlen.c \
 		src/ft_strmapi.c \
 		src/ft_strncmp.c \
+		src/ft_strndup.c \
 		src/ft_strnstr.c \
 		src/ft_strrchr.c \
 		src/ft_strtrim.c \

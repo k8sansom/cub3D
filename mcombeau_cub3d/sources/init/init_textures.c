@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:34:03 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/11 11:39:38 by mcombeau         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:29:39 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	}
 	mlx_destroy_image(data->mlx, tmp.img);
 	return (buffer);
-} 
+}
 
 void	init_textures(t_data *data)
 {

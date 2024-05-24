@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:08 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:33:38 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	check_horizontal(t_game *game)
 	int	j;
 
 	j = 0;
-	while (j < (int)ft_strlen(game->map[0]) - 1)
+	while (j < (int)ft_strlen(game->map[0]))
 	{
 		if (game->map[0][j] != '1')
 			return (0);
 		j++;
 	}
 	j = 0;
-	while (j < (int)ft_strlen(game->map[game->map_height - 1]) - 1)
+	while (j < (int)ft_strlen(game->map[game->map_height - 1]))
 	{
 		if (game->map[game->map_height - 1][j] != '1')
 			return (0);
@@ -41,7 +41,7 @@ static int	check_vertical(t_game *game)
 	while (i < game->map_height)
 	{
 		if (game->map[i][0] != '1' || \
-			game->map[i][ft_strlen(game->map[i]) - 2] != '1')
+			game->map[i][ft_strlen(game->map[i]) - 1] != '1')
 			return (0);
 		i++;
 	}
@@ -69,7 +69,7 @@ static void	fill_spaces(t_game *game)
 	while (++i < game->map_height)
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(game->map[i]) - 2)
+		while (++j < (int)ft_strlen(game->map[i]))
 		{
 			if (ft_strchr(WHITESPACE, game->map[i][j]))
 				game->map[i][j] = '1';
@@ -111,7 +111,7 @@ void	check_map(t_game *game)
 	while (++i < game->map_height)
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(game->map[i]) - 1)
+		while (++j < (int)ft_strlen(game->map[i]))
 		{
 			if (!ft_strchr("NSEW01", game->map[i][j]))
 				full_exit("Error: incorrect character", game, 3);

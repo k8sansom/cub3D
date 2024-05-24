@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/23 13:01:15 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:57:17 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ void	raycasting(t_game *game)
 
 int	render_game(t_game *game)
 {
+	game->image.img_ptr = mlx_new_image(game->mlx_ptr, \
+		WIN_WIDTH, WIN_HEIGHT);
+	if (!game->image.img_ptr)
+		full_exit("Failed to create a new image", game, 1);
+	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr, \
+		&game->image.bits_per_pix, \
+		&game->image.size_line, \
+		&game->image.endian);
 	handle_movement(game);
 	handle_rotation(game);
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);

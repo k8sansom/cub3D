@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:57 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:15:55 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	convert_rgb(int *tab)
 	return (result);
 }
 
-static int check_digits(const char *str)
+static int	check_digits(const char *str)
 {
 	int	i;
 	int	trigger;
@@ -88,7 +88,7 @@ static char	*copy_texture(t_game *game, char *src, char type)
 		full_exit("Error: duplicate texture", game, 3);
 	if (!src)
 		full_exit("Error: texture path missing", game, 3);
-	return (ft_strdup(src));
+	return (ft_strndup(src, ft_strlen(src) - 1));
 }
 
 void	read_textures(t_game *game)

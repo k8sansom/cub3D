@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/23 12:55:54 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:31:27 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define MMAP_WALL 0x808080
 # define MMAP_FLOOR 0xE6E6E6
 # define MMAP_OTHER 0x404040
+
+# define	TILE_SIZE 64
 
 
 enum e_tex_index
@@ -104,13 +106,13 @@ typedef struct s_textures
 	int				*ceiling;
 	size_t			hex_floor;
 	size_t			hex_ceiling;
-	int				size;
 	int				index;
 	double			step;
 	double			pos;
 	int				x;
 	int				y;
 	int				width;
+	int				size;
 }	t_textures;
 
 typedef struct s_player

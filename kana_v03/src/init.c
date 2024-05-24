@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/23 12:55:38 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:55:41 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ void	init_mlx(t_game *game)
 		full_exit("Error: initializing mlx", game, 6);
 	// 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
 	// 		WIN_HEIGHT / 2);
-	game->image.img_ptr = mlx_new_image(game->mlx_ptr, \
-			WIN_WIDTH, WIN_HEIGHT);
-	if (!game->image.img_ptr)
-		full_exit("Failed to create a new image", game, 1);
-	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr,
-			&game->image.bits_per_pix,
-			&game->image.size_line,
-			&game->image.endian);
 }
 
 static void	init_other(t_game *game)
@@ -44,7 +36,7 @@ static void	init_textures(t_textures *textures)
 	ft_memset(textures, 0, sizeof(t_textures));
 	textures->hex_floor = 0x0;
 	textures->hex_ceiling = 0x0;
-	textures->size = 64;
+	textures->size = TILE_SIZE;
 	textures->step = 0.0;
 	textures->pos = 0.0;
 }

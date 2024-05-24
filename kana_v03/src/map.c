@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:48:52 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/17 10:48:33 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/24 11:29:23 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	copy_map(t_game *game, int start)
 	game->map = malloc(sizeof(char *) * size);
 	while (game->cub[start])
 	{
-		game->map[i] = ft_strdup(game->cub[start]);
+		game->map[i] = ft_strndup(game->cub[start], \
+			ft_strlen(game->cub[start]) - 1);
 		i++;
 		start++;
 	}

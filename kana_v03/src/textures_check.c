@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:53:18 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:45 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:24:47 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static int	check_xpms(char *north, char *south, char *east, char *west)
 	s = ft_strlen(south);
 	e = ft_strlen(east);
 	w = ft_strlen(west);
-	if (north[n - 5] != '.' || south[s - 5] != '.' || east[e - 5] != '.' \
-		|| west[w - 5] != '.' || north[n - 4] != 'x' || south[s - 4] != 'x' \
-		|| east[e - 4] != 'x' || west[w - 4] != 'x' || north[n - 3] != 'p' \
-		|| south[s - 3] != 'p' || east[e - 3] != 'p' || west[w - 3] != 'p' \
-		|| north[n - 2] != 'm' || south[s - 2] != 'm' || east[e - 2] != 'm' \
-		|| west[w - 2] != 'm')
+	if (north[n - 4] != '.' || south[s - 4] != '.' || east[e - 4] != '.' \
+		|| west[w - 4] != '.' || north[n - 3] != 'x' || south[s - 3] != 'x' \
+		|| east[e - 3] != 'x' || west[w - 3] != 'x' || north[n - 2] != 'p' \
+		|| south[s - 2] != 'p' || east[e - 2] != 'p' || west[w - 2] != 'p' \
+		|| north[n - 1] != 'm' || south[s - 1] != 'm' || east[e - 1] != 'm' \
+		|| west[w - 1] != 'm')
 		return (1);
 	return (0);
 }

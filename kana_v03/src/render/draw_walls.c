@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/23 12:51:01 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:40:36 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_vertical_line(t_game *game, int x)
 	int	color;
 
 	color = get_wall_color(game);
-	printf("d start is %d, d end is %d\n", game->ray.draw_start, game->ray.draw_end);
+	// printf("d start is %d, d end is %d\n", game->ray.draw_start, game->ray.draw_end);
 	y = game->ray.draw_start;
 	while (y <= game->ray.draw_end)
 	{

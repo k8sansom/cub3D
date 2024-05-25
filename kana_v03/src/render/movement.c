@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:44:42 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/20 19:02:54 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:37:01 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	move_right(t_game *game)
 	if (is_valid_pos(game, new_x, new_y))
 	{
 		game->player.pos_x = new_x;
-		game->player.pos_y = new_y;
+		game->player.pos_y = new_y; 
 		game->player.has_moved = 1;
 	}
 }

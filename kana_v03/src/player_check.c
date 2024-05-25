@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:27:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:32 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:14:44 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	path_check(t_game *game)
 
 	ft_memset(&temp, 0, sizeof(t_game));
 	temp.map_height = game->map_height;
-	temp.player_pos_x = game->player_pos_x;
-	temp.player_pos_y = game->player_pos_y;
+	temp.player.pos_x = game->player.pos_x;
+	temp.player.pos_y = game->player.pos_y;
 	temp.map = (char **)malloc((game->map_height + 1) * sizeof(char *));
 	if (!temp.map)
 		full_exit("Error: allocating memory", game, 5);
@@ -45,7 +45,7 @@ void	path_check(t_game *game)
 		i++;
 	}
 	temp.map[i] = NULL;
-	flood_fill(&temp, temp.player_pos_y, temp.player_pos_x);
+	flood_fill(&temp, temp.player.pos_y, temp.player.pos_x);
 	if (temp.move_counter < 1)
 	{
 		free_arr(temp.map);
@@ -69,8 +69,8 @@ void	check_player_position(t_game *game)
 		{
 			if (ft_strchr("NSEW", game->map[i][j]))
 			{
-				game->player_pos_x = j;
-				game->player_pos_y = i;
+				game->player.pos_x = j;
+				game->player.pos_y = i;
 				game->player.dir = game->map[i][j];
 			}
 			j++;

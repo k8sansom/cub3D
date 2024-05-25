@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/24 10:31:27 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/25 21:35:08 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define MMAP_FLOOR 0xE6E6E6
 # define MMAP_OTHER 0x404040
 
-# define	TILE_SIZE 64
+# define TILE_SIZE 64
 
 
 enum e_tex_index
@@ -149,8 +149,6 @@ typedef struct s_game
 	int			map_width;
 	int			player_counter;
 	int			move_counter;
-	int			player_pos_x;
-	int			player_pos_y;
 
 	char		**cub;
 	char		**map;
@@ -166,10 +164,10 @@ typedef struct s_game
 
 //init
 void		init_game(t_game *game);
-int			render_game(t_game *game);
 void		init_mlx(t_game *game);
 void		init_texture_arr(t_game *game);
 void		init_tex_image(t_game *game, t_image *image, char *path);
+void		init_image(t_game *game);
 
 //parsing
 void		parse_file(t_game *game, char *map);
@@ -189,10 +187,14 @@ size_t		convert_rgb(int *tab);
 //map
 void		read_map(t_game *game);
 void		check_map(t_game *game);
-
 void		init_player_dir(t_game *game);
 void		check_player_position(t_game *game);
 void		set_hooks(t_game *game);
+
+//render
+int			render_game(t_game *game);
+void		render_frame(t_game *game);
+void		initial_render(t_game *game);
 
 //raycasting
 void		init_ray(t_game *game, int current_x);
@@ -203,7 +205,6 @@ void		raycasting(t_game *game);
 
 //movement
 void		handle_movement(t_game *game);
-
 void		handle_rotation(t_game *game);
 int			is_wall(t_game *game);
 bool		is_valid_pos(t_game *game, double x, double y);

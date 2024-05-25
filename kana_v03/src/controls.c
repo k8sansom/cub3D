@@ -6,14 +6,15 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/23 12:11:34 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:41:09 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int	key_press(t_game *game, int key)
+int	key_press(t_game *game, int key)
 {
+	printf("Key Pressed: %d\n", key);
 	if (key == KEY_ESC)
 		full_exit("Giving up?!", game, 0);
 	else if (key == KEY_W)
@@ -28,32 +29,25 @@ static int	key_press(t_game *game, int key)
 		game->player.rotate -= 1;
 	else if (key == KEY_RIGHT)
 		game->player.rotate += 1;
+	else
+		printf("Unknown key pressed\n"); 
 	return (0);
 }
 
-static int	key_release(t_game *game, int key)
+int	key_release(t_game *game, int key)
 {
-	if (key == KEY_W)
-	{
-		if (game->player.move_y == 1)
-			game->player.move_y = 0;
-	}
-	else if (key == KEY_S)
-	{
-		if (game->player.move_y == -1)
-			game->player.move_y = 0;
-	}
-	else if (key == KEY_A)
-	{
-		if (game->player.move_x == -1)
-			game->player.move_x = 0;
-	}
-	else if (key == KEY_D)
-	{
-		if (game->player.move_x == 1)
-			game->player.move_x = 0;
-	}
-	else if (key == KEY_LEFT || key == KEY_RIGHT)
+	printf("Key Released: %d\n", key);
+	if (key == KEY_ESC)
+		full_exit("Giving up?!", game, 0);
+	if (key == KEY_W && game->player.move_y == 1)
+		game->player.move_y = 0;
+	else if (key == KEY_S && game->player.move_y == -1)
+		game->player.move_y = 0;
+	else if (key == KEY_A && game->player.move_x == -1)
+		game->player.move_x = 0;
+	else if (key == KEY_D && game->player.move_x == 1)
+		game->player.move_x = 0;
+	else if ((key == KEY_LEFT || key == KEY_RIGHT) && game->player.rotate)
 		game->player.rotate = 0;
 	return (0);
 }
@@ -82,9 +76,9 @@ static int	key_release(t_game *game, int key)
 
 void	set_hooks(t_game *game)
 {
-	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, full_exit, game);
+	mlx_hook(game->win_ptr, 33, 1L << 17, full_exit, &game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, key_press, game);
-	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release, &game);
 //	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, use_mouse, game);
 //	mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
 }

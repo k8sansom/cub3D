@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:13:49 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/25 21:42:26 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:04:14 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	handle_rotation(t_game *game)
 	double	old_plane_x;
 	int		rotspeed;
 
-	rotspeed = ROTSPEED * game->player.rotate;
-	if (game->player.rotate)
+	rotspeed = ROTSPEED * game->player.rotate * (M_PI / 180.0);
+	if (!game->player.rotate)
 	{
 		old_dir_x = game->player.dir_x;
 		old_plane_x = game->player.plane_x;
@@ -31,7 +31,6 @@ void	handle_rotation(t_game *game)
 			- game->player.plane_y * sin(rotspeed);
 		game->player.plane_y = old_dir_x * sin(rotspeed)
 			+ game->player.plane_y * cos(rotspeed);
-		game->player.rotate = 0;
 	}
 	game->player.has_moved = 1;
 }

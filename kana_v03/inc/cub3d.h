@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/25 21:35:08 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:03:38 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define KEY_LEFT  	65361
 # define KEY_RIGHT 	65363
 
-# define MOVESPEED 0.1
+# define MOVESPEED 0.015
 # define ROTSPEED 0.01
 
 # define MOUSE_S 0.005
@@ -47,7 +47,6 @@
 # define MMAP_OTHER 0x404040
 
 # define TILE_SIZE 64
-
 
 enum e_tex_index
 {
@@ -189,7 +188,11 @@ void		read_map(t_game *game);
 void		check_map(t_game *game);
 void		init_player_dir(t_game *game);
 void		check_player_position(t_game *game);
+
+//controls
 void		set_hooks(t_game *game);
+int			key_release(int key, t_game *game);
+int			key_press(int key, t_game *game);
 
 //render
 int			render_game(t_game *game);
@@ -206,7 +209,7 @@ void		raycasting(t_game *game);
 //movement
 void		handle_movement(t_game *game);
 void		handle_rotation(t_game *game);
-int			is_wall(t_game *game);
+bool		is_wall(t_game *game, double x, double y);
 bool		is_valid_pos(t_game *game, double x, double y);
 
 //draw walls

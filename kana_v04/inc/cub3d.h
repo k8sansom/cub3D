@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 10:45:43 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 11:11:17 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,11 @@ int			render_game(t_game *game);
 void		render_frame(t_game *game);
 void		initial_render(t_game *game);
 
-//render textures
+//render init
 void		init_tex_pix(t_game *game);
+void		init_ray(t_game *game, int current_x);
 
 //raycasting
-void		init_ray(t_game *game, int current_x);
 void		set_steps(t_game *game);
 void		perform_dda(t_game *game);
 void		calculate_wall(t_game *game);

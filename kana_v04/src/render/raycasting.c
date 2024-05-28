@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/27 18:00:21 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:09:18 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	init_ray(t_game *game, int current_x)
+void	init_raycasting(t_game *game, int current_x)
 {
 	double	camera_x;
 
+	ft_memset(&game->ray, 0, sizeof(t_ray));
 	camera_x = 2 * current_x / (double)WIN_WIDTH - 1;
 	game->ray.dir_x = game->player.dir_x + game->player.plane_x * camera_x;
 	game->ray.dir_y = game->player.dir_y + game->player.plane_y * camera_x;
@@ -109,7 +110,7 @@ void	raycasting(t_game *game)
 	current_x = 0;
 	while (current_x < WIN_WIDTH)
 	{
-		init_ray(game, current_x);
+		init_raycasting(game, current_x);
 		set_steps(game);
 		perform_dda(game);
 		calculate_wall(game);

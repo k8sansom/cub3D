@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 10:47:57 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:18:28 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,15 @@ int	full_exit(char *s, t_game *game, int exit_code)
 		free_tab((void **)game->map);
 	if (s)
 		ft_fprintf(1, "%s\n", s);
-//	free_textures(&game->textures);
+	free_textures(&game->textures);
 	//free_ray(game->ray);
 	exit(exit_code);
 	return (0);
 }
+
+int	quit_game(t_game *game)
+{
+	full_exit("All done?!", game, NO_ERR);
+	return (0);
+}
+

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 12:02:09 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:19:15 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@
 # define WIN_HEIGHT	480
 
 # define WHITESPACE "	 /\r/\n/\f"
-
-# define KEY_W		119
-# define KEY_A		97
-# define KEY_S		115
-# define KEY_D		100
-# define KEY_ESC	65307
-# define KEY_LEFT  	65361
-# define KEY_RIGHT 	65363
 
 # define MOVESPEED 0.015
 # define ROTSPEED 0.01
@@ -185,10 +177,11 @@ void		init_image(t_game *game, t_image *image, int width, int height);
 void		parse_file(t_game *game, char *map);
 void		read_cub(t_game *game, char *map);
 
-//errors
+//errors and exit
 int			full_exit(char *s, t_game *game, int exit_code);
 void		free_tab(void **tab);
 void		ft_free(char **arr, int n);
+int			quit_game(t_game *game);
 
 //textures
 void		read_textures(t_game *game);

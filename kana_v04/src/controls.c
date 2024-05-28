@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 11:45:01 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:19:28 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 int	key_press(int key, t_game *game)
 {
-	if (key == KEY_ESC)
-		full_exit("Giving up?!", game, NO_ERR);
-	if (key == KEY_W)
-		game->player.move_y = 1;
-	if (key == KEY_S)
-		game->player.move_y = -1;
-	if (key == KEY_A)
-		game->player.move_x = -1;
-	if (key == KEY_D)
-		game->player.move_x = 1;
-	if (key == KEY_LEFT)
+	if (key == XK_Escape)
+		full_exit("All done?!", game, NO_ERR);
+	if (key == XK_Left)
 		game->player.rotate -= 1;
-	if (key == KEY_RIGHT)
+	if (key == XK_Right)
 		game->player.rotate += 1;
+	if (key == XK_w)
+		game->player.move_y = 1;
+	if (key == XK_a)
+		game->player.move_x = -1;
+	if (key == XK_s)
+		game->player.move_y = -1;
+	if (key == XK_d)
+		game->player.move_x = 1;
 	return (0);
 }
 
 int	key_release(int key, t_game *game)
 {
-	if (key == KEY_ESC)
-		full_exit("Giving up?!", game, NO_ERR);
-	if (key == KEY_W && game->player.move_y == 1)
+	if (key == XK_Escape)
+		full_exit("All done?!", game, NO_ERR);
+	if (key == XK_w && game->player.move_y == 1)
 		game->player.move_y = 0;
-	else if (key == KEY_S && game->player.move_y == -1)
+	else if (key == XK_s && game->player.move_y == -1)
 		game->player.move_y = 0;
-	else if (key == KEY_A && game->player.move_x == -1)
+	else if (key == XK_a && game->player.move_x == -1)
 		game->player.move_x += 1;
-	else if (key == KEY_D && game->player.move_x == 1)
+	else if (key == XK_d && game->player.move_x == 1)
 		game->player.move_x -= 1;
-	else if ((key == KEY_LEFT || key == KEY_RIGHT) && game->player.rotate)
+	else if ((key == XK_Left || key == XK_Right) && game->player.rotate)
 		game->player.rotate = 0;
 	return (0);
 }
@@ -72,7 +72,7 @@ int	key_release(int key, t_game *game)
 
 void	set_hooks(t_game *game)
 {
-	mlx_hook(game->win_ptr, 17, 0, full_exit, game);
+	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, quit_game, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release, game);
 //	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, use_mouse, game);

@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/25 19:31:03 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:00:52 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	init_image(t_game *game)
+void	init_image(t_game *game, t_image *image, int width, int height)
 {
-	game->image.img_ptr = mlx_new_image(game->mlx_ptr, \
-		WIN_WIDTH, WIN_HEIGHT);
-	if (!game->image.img_ptr)
-		full_exit("Failed to create a new image", game, 1);
-	game->image.img_addr = (int *)mlx_get_data_addr(game->image.img_ptr, \
-		&game->image.bits_per_pix, \
-		&game->image.size_line, \
-		&game->image.endian);
+	ft_memset(image, 0, sizeof(t_image));
+	image->img_ptr = mlx_new_image(game->mlx_ptr, width, height);
+	if (!image->img_ptr)
+		full_exit("Error: Failed to create a new image", game, MLX_IMG_ERR);
+	image->img_addr = (int *)mlx_get_data_addr(image->img_ptr, \
+		&image->bits_per_pix, \
+		&image->size_line, \
+		&image->endian);
 }
 
 void	init_mlx(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
-		full_exit("Error: initializing mlx", game, 6);
+		full_exit("Error: initializing mlx", game, MLX_ERR);
 	game->win_ptr = mlx_new_window(game->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	if (!game->win_ptr)
-		full_exit("Error: initializing mlx", game, 6);
+		full_exit("Error: initializing mlx", game, MLX_ERR);
 	// 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
 	// 		WIN_HEIGHT / 2);
 }
@@ -69,5 +69,4 @@ void	init_game(t_game *game)
 //	init_minimap(&game);
 	ft_memset(&game->ray, 0, sizeof(t_ray));
 	ft_memset(&game->mmap, 0, sizeof(t_mmap));
-	ft_memset(&game->image, 0, sizeof(t_image));
 }

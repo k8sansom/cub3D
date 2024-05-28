@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:51:39 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 09:53:10 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 11:47:13 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_tex_image(t_game *game, t_image *image, char *path)
 	image->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, path, \
 		&game->textures.size, &game->textures.size);
 	if (!image->img_ptr)
-		full_exit("Error: mlx", game, 5);
+		full_exit("Error: mlx", game, MLX_IMG_ERR);
 	image->img_addr = (int *)mlx_get_data_addr(image->img_ptr, \
 		&image->bits_per_pix, &image->size_line, &image->endian);
 }
@@ -34,7 +34,7 @@ static int	*convert_xpm(t_game *game, char *path)
 	buffer = ft_calloc(1, \
 		sizeof * buffer * game->textures.size * game->textures.size);
 	if (!buffer)
-		full_exit("Error: malloc", game, 3);
+		full_exit("Error: malloc", game, MALLOC_ERR);
 	y = 0;
 	while (y < game->textures.size)
 	{
@@ -55,7 +55,7 @@ void	init_texture_arr(t_game *game)
 {
 	game->texture_arr = ft_calloc(5, sizeof(game->texture_arr));
 	if (!game->texture_arr)
-		full_exit("Error: memory allocation", game, 3);
+		full_exit("Error: malloc", game, MALLOC_ERR);
 	game->texture_arr[NO] = convert_xpm(game, game->textures.north);
 	game->texture_arr[SO] = convert_xpm(game, game->textures.south);
 	game->texture_arr[EA] = convert_xpm(game, game->textures.east);

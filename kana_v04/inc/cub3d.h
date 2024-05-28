@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 11:11:17 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 12:02:09 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ enum e_tex_index
 	SO,
 	EA,
 	WE
+};
+
+enum e_err_num
+{
+	NO_ERR,
+	COM_ERR,
+	CUB_ERR,
+	TEX_ERR,
+	MAP_ERR,
+	MALLOC_ERR,
+	MLX_ERR,
+	MLX_IMG_ERR,
 };
 
 typedef struct s_mmap
@@ -158,8 +170,8 @@ typedef struct s_game
 	t_textures	textures;
 	t_player	player;
 	t_ray		ray;
-	t_mmap		mmap;
 	t_image		image;
+	t_mmap		mmap;
 }	t_game;
 
 //init
@@ -167,7 +179,7 @@ void		init_game(t_game *game);
 void		init_mlx(t_game *game);
 void		init_texture_arr(t_game *game);
 void		init_tex_image(t_game *game, t_image *image, char *path);
-void		init_image(t_game *game);
+void		init_image(t_game *game, t_image *image, int width, int height);
 
 //parsing
 void		parse_file(t_game *game, char *map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:27 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:52:37 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	adding_rows(t_game *game, char *row)
 	game->cub_height++;
 	temp = (char **)malloc(sizeof(char *) * (game->cub_height + 1));
 	if (!temp)
-		full_exit(strerror(errno), game, errno);
+		full_exit("Error: malloc", game, MALLOC_ERR);
 	temp[game->cub_height] = NULL;
 	while (i < (game->cub_height - 1))
 	{
@@ -45,10 +45,10 @@ void	read_cub(t_game *game, char *cub)
 	row = NULL;
 	len = ft_strlen(cub);
 	if (ft_isdir(cub))
-		full_exit("Error: is a directory", game, 1);
+		full_exit("Error: is a directory", game, CUB_ERR);
 	if (cub[len - 4] != '.' || cub[len - 3] != 'c' || cub[len - 2] != 'u' \
 		|| cub[len - 1] != 'b')
-		full_exit("Error: file is not a .cub", game, 2);
+		full_exit("Error: file is not a .cub", game, CUB_ERR);
 	game->fd = open(cub, O_RDONLY);
 	if (game->fd < 0)
 		full_exit(strerror(errno), game, errno);
@@ -60,7 +60,7 @@ void	read_cub(t_game *game, char *cub)
 	}
 	game->cub[game->cub_height] = NULL;
 	if (!game->cub)
-		full_exit("Error: cub file is empty", game, 2);
+		full_exit("Error: cub file is empty", game, CUB_ERR);
 	close(game->fd);
 }
 

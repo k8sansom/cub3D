@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 11:02:11 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 12:02:54 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	render_floor_and_ceiling(t_game *game)
 
 void	render_frame(t_game *game)
 {
-	init_image(game);
+	init_image(game, &game->image, WIN_WIDTH, WIN_HEIGHT);
 //	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	render_floor_and_ceiling(game);
 	init_tex_pix(game);

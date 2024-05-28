@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:37 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:45:01 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_press(int key, t_game *game)
 {
 	if (key == KEY_ESC)
-		full_exit("Giving up?!", game, 0);
+		full_exit("Giving up?!", game, NO_ERR);
 	if (key == KEY_W)
 		game->player.move_y = 1;
 	if (key == KEY_S)
@@ -34,7 +34,7 @@ int	key_press(int key, t_game *game)
 int	key_release(int key, t_game *game)
 {
 	if (key == KEY_ESC)
-		full_exit("Giving up?!", game, 0);
+		full_exit("Giving up?!", game, NO_ERR);
 	if (key == KEY_W && game->player.move_y == 1)
 		game->player.move_y = 0;
 	else if (key == KEY_S && game->player.move_y == -1)

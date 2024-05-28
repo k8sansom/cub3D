@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:33:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2024/05/24 11:01:05 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 11:29:52 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	init_img(t_data *data, t_img *image, int width, int height)
 void	init_texture_img(t_data *data, t_img *image, char *path)
 {
 	init_img_clean(image);
-	printf("%s\n", path);
 	image->img = mlx_xpm_file_to_image(data->mlx, path, &data->texinfo.size,
 			&data->texinfo.size);
 	if (image->img == NULL)

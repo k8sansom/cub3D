@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/11 11:38:30 by mcombeau         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:12:15 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_texture_pixels(t_data *data)
 			clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 		i++;
 	}
-}
+} 
 
 static void	get_texture_index(t_data *data, t_ray *ray)
 {

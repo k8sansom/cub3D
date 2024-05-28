@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/27 16:47:46 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:23:11 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	render_frame(t_game *game)
 	init_image(game);
 //	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	render_floor_and_ceiling(game);
+	init_tex_pix(game);
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->image.img_ptr, 0, 0);
@@ -50,7 +51,6 @@ int	render_game(t_game *game)
 {
 	handle_movement(game);
 	handle_rotation(game);
-//	printf("player pos x is %f, player pos y is %f\n", game->player.pos_x, game->player.pos_y);
 	if (!game->player.has_moved)
 	 	return (0);
 	render_frame(game);
@@ -62,5 +62,6 @@ int	render_game(t_game *game)
 void	initial_render(t_game *game)
 {
 	render_frame(game);
+	
 //	render_minimap(game);
 }

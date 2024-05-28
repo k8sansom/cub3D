@@ -3,26 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/21 17:44:50 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:38:32 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	ft_free(char **arr, int n)
+void	free_tab(void **tab)
 {
 	int	i;
 
 	i = 0;
-	while (i < n)
+	while (tab[i])
 	{
-		free(arr[i]);
+		free(tab[i]);
 		i++;
 	}
-	free(arr);
+	if (tab)
+	{
+		free(tab);
+		tab = NULL;
+	}
 }
 
 void	free_textures(t_textures *textures)
@@ -45,20 +49,6 @@ void	free_textures(t_textures *textures)
 		free(textures->floor);
 }
 
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	arr = NULL;
-}
-
 int	full_exit(char *s, t_game *game, int exit_code)
 {
 	if (game->win_ptr)
@@ -68,9 +58,9 @@ int	full_exit(char *s, t_game *game, int exit_code)
 	if (game->fd)
 		close(game->fd);
 	if (game->cub)
-		free_arr(game->cub);
+		free_tab((void **)game->cub);
 	if (game->map)
-		free_arr(game->map);
+		free_tab(game->map);
 	if (s)
 		ft_fprintf(1, "%s\n", s);
 //	free_textures(&game->textures);

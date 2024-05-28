@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/27 18:03:38 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:45:43 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_game
 	char		**map;
 
 	int			**texture_arr;
+	int			**tex_pix;
 
 	t_textures	textures;
 	t_player	player;
@@ -174,7 +175,7 @@ void		read_cub(t_game *game, char *map);
 
 //errors
 int			full_exit(char *s, t_game *game, int exit_code);
-void		free_arr(char **arr);
+void		free_tab(void **tab);
 void		ft_free(char **arr, int n);
 
 //textures
@@ -198,6 +199,9 @@ int			key_press(int key, t_game *game);
 int			render_game(t_game *game);
 void		render_frame(t_game *game);
 void		initial_render(t_game *game);
+
+//render textures
+void		init_tex_pix(t_game *game);
 
 //raycasting
 void		init_ray(t_game *game, int current_x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:27:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/25 20:14:44 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:38:49 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	path_check(t_game *game)
 	flood_fill(&temp, temp.player.pos_y, temp.player.pos_x);
 	if (temp.move_counter < 1)
 	{
-		free_arr(temp.map);
+		free_tab(temp.map);
 		full_exit("Error: no valid path available", game, 6);
 	}
-	free_arr(temp.map);
+	free_tab(temp.map);
 }
 
 void	check_player_position(t_game *game)

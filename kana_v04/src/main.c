@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:19:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/27 16:29:36 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:01:49 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	print_controls(void)
+{
+	printf("W:	move forward\n");
+	printf("S:	move backward\n");
+	printf("A:	glide left\n");
+	printf("D:	glide right\n");
+	printf("<:	rotate left\n");
+	printf(">:	rotate right\n");
+}
 
 int	main(int ac, char **av)
 {
@@ -23,9 +33,9 @@ int	main(int ac, char **av)
 	}
 	init_game(&game);
 	parse_file(&game, av[1]);
-	printf("%s\n", game.textures.north);
+	print_controls();
 	init_mlx(&game);
-//	init_texture_arr(&game);
+	init_texture_arr(&game);
 	init_player_dir(&game);
 	initial_render(&game);
 	set_hooks(&game);

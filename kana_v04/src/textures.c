@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/24 11:15:55 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 10:38:53 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ int	*get_rgbs(t_game *game, char *str)
 		i++;
 	if (i != 3)
 	{
-		free_arr(rgb_arr);
+		free_tab(rgb_arr);
 		full_exit("Error: with color rgb", game, 1);
 	}
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 	{
-		free_arr(rgb_arr);
+		free_tab(rgb_arr);
 		full_exit("Malloc error", game, 1);
 	}
 	i = -1;
 	while (rgb_arr[++i])
 		rgb[i] = ft_atoi(rgb_arr[i]);
-	free_arr(rgb_arr);
+	free_tab(rgb_arr);
 	return (rgb);
 }
 
@@ -107,8 +107,10 @@ void	read_textures(t_game *game)
 		else if (!ft_strncmp(game->cub[i], "EA ", 3))
 			game->textures.east = copy_texture(game, game->cub[i] + 3, 'E');
 		else if (!ft_strncmp(game->cub[i], "F ", 2))
-			game->textures.floor_str = copy_texture(game, game->cub[i] + 2, 'F');
+			game->textures.floor_str = copy_texture(game, game->cub[i] + 2, \
+				'F');
 		else if (!ft_strncmp(game->cub[i], "C ", 2))
-			game->textures.ceiling_str = copy_texture(game, game->cub[i] + 2, 'C');
+			game->textures.ceiling_str = copy_texture(game, game->cub[i] + 2, \
+				'C');
 	}
 }

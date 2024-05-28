@@ -6,7 +6,7 @@
 #    By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 16:07:51 by ksansom           #+#    #+#              #
-#    Updated: 2024/05/28 10:55:44 by ksansom          ###   ########.fr        #
+#    Updated: 2024/05/28 15:16:43 by ksansom          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,15 @@ SRCS =	src/controls.c \
 		src/player_check.c \
 		src/textures_check.c \
 		src/textures.c \
+		src/movement/movement.c \
+		src/movement/rotation.c \
+		src/movement/valid_move.c \
 		src/render/draw_walls.c \
 		src/render/minimap.c \
-		src/render/movement.c \
 		src/render/raycasting_utils.c \
 		src/render/raycasting.c \
 		src/render/render.c \
 		src/render/render_init.c \
-		src/render/rotation.c \
 
 OBJS = $(SRCS:.c=.o)
 

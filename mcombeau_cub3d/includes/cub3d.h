@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:47:42 by alexa             #+#    #+#             */
-/*   Updated: 2024/05/07 10:55:10 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 12:50:25 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ typedef struct s_ray
 }	t_ray;
 
 typedef struct s_player
-{
+{XK_Escape
 	char	dir;
 	double	pos_x;
 	double	pos_y;

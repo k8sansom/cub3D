@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 12:02:54 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:14:17 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	render_frame(t_game *game)
 
 int	render_game(t_game *game)
 {
-	handle_movement(game);
-	handle_rotation(game);
+	game->player.has_moved = handle_movement(game);
 	if (!game->player.has_moved)
 	 	return (0);
 	render_frame(game);

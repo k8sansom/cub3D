@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:31:24 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/10 12:34:32 by mcombeau         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:18:22 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,4 @@ int	move_player(t_data *data)
 		moved += rotate_player(data, data->player.rotate);
 	return (moved);
 }
+

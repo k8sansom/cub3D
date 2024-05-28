@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:31:03 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/10 14:15:14 by mcombeau         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:09:01 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,4 @@ void	listen_for_input(t_data *data)
 		mlx_hook(data->win, MotionNotify, PointerMotionMask,
 			mouse_motion_handler, data);
 }
+

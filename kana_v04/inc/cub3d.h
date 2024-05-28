@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 13:19:15 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 14:46:32 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,10 +216,10 @@ void		calculate_wall(t_game *game);
 void		raycasting(t_game *game);
 
 //movement
-void		handle_movement(t_game *game);
-void		handle_rotation(t_game *game);
+int			handle_movement(t_game *game);
+int			handle_rotation(t_game *game, double rotdir);
 bool		is_wall(t_game *game, double x, double y);
-bool		is_valid_pos(t_game *game, double x, double y);
+int			valid_move(t_game *game, double x, double y);
 
 //draw walls
 void		set_pixel(t_game *game, int x, int y, int color);

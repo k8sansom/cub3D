@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:27:23 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 10:38:32 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 10:47:57 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	full_exit(char *s, t_game *game, int exit_code)
 	if (game->cub)
 		free_tab((void **)game->cub);
 	if (game->map)
-		free_tab(game->map);
+		free_tab((void **)game->map);
 	if (s)
 		ft_fprintf(1, "%s\n", s);
 //	free_textures(&game->textures);

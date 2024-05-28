@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:41:55 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 10:38:53 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/28 10:50:29 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ int	*get_rgbs(t_game *game, char *str)
 		i++;
 	if (i != 3)
 	{
-		free_tab(rgb_arr);
+		free_tab((void **)rgb_arr);
 		full_exit("Error: with color rgb", game, 1);
 	}
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 	{
-		free_tab(rgb_arr);
+		free_tab((void **)rgb_arr);
 		full_exit("Malloc error", game, 1);
 	}
 	i = -1;
 	while (rgb_arr[++i])
 		rgb[i] = ft_atoi(rgb_arr[i]);
-	free_tab(rgb_arr);
+	free_tab((void **)rgb_arr);
 	return (rgb);
 }
 

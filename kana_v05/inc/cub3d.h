@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 11:34:42 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:54:44 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void		set_pixel(t_game *game, int x, int y, int color);
 void		wall_orientation(t_game *game);
 void		draw_vertical_line(t_game *game, int x);
 void		render_floor_and_ceiling(t_game *game);
-int			get_wall_color(t_game *game);
+int			get_wall_color(t_game *game, int location);
 
 //minimap
 void		init_minimap(t_game *game);

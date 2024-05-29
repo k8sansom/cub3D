@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 11:27:02 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:59:21 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,29 @@ void	draw_vertical_line(t_game *game, int x)
 {
 	int	y;
 	int	color;
+	int	location;
 
 	y = game->ray.draw_start;
 	while (y <= game->ray.draw_end)
 	{
-		color = get_wall_color(game);
+		location = y * game->textures.size + x;
+		color = get_wall_color(game, location);
 		set_pixel(game, x, y, color);
 		y++;
 	}
 }
 
-int	get_wall_color(t_game *game)
+int	get_wall_color(t_game *game, int location)
 {
 	if (game->ray.orientation == NO)
-		return (0xFF0000/*game->texture_arr[NO]*/);
+		return (game->texture_arr[NO][location]);
 	else if (game->ray.orientation == SO)
-		return (0x00FF00/*game->texture_arr[SO]*/);
+		return (game->texture_arr[SO][location]);
 	else if (game->ray.orientation == EA)
-		return (0x0000FF/*game->texture_arr[EA]*/);
-	else if (game->ray.orientation == WE)
-		return (0xFFFF00/*game->texture_arr[WE]*/);
+		return (game->texture_arr[EA][location]);
 	else
-		return (0xFFFFFF);
+		return (game->texture_arr[WE][location]);
+	// else
+	// 	return (0xFFFFFF);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:04 by mcombeau          #+#    #+#             */
-/*   Updated: 2024/05/28 11:02:22 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:35:12 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	render_frame(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0);
 	mlx_destroy_image(data->mlx, image.img);
 }
+
 
 static void	render_raycast(t_data *data)
 {

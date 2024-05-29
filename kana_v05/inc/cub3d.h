@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 10:31:58 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:56:33 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,9 @@ int			render_game(t_game *game);
 void		render_frame(t_game *game);
 void		initial_render(t_game *game);
 
-//render init
+//render utils
 void		init_tex_pix(t_game *game);
-void		init_ray(t_game *game, int current_x);
+void		set_frame_pix(t_game *game, t_image *image, int x, int y);
 
 //raycasting
 void		set_steps(t_game *game);

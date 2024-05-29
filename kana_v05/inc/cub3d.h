@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 11:54:44 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:04:21 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ typedef struct s_ray
 {
 	bool	hit_wall;
 	int		current_column;
-	double	wall_dist;
-	double	wall_pos;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -90,12 +88,22 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		step_x;
 	int		step_y;
+
+}	t_ray;
+
+typedef struct s_wall
+{
 	int		orientation;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
 	bool	vertical_wall;
-}	t_ray;
+	int		tex_x;
+	int		tex_y;
+	double	wall_dist;
+	double	step;
+	double	tex_pos;
+}	t_wall;
 
 typedef struct s_textures
 {
@@ -164,6 +172,7 @@ typedef struct s_game
 	t_ray		ray;
 	t_image		image;
 	t_mmap		mmap;
+	t_wall		wall;
 }	t_game;
 
 //init
@@ -213,6 +222,7 @@ void		set_frame_pix(t_game *game, t_image *image, int x, int y);
 void		set_steps(t_game *game);
 void		perform_dda(t_game *game);
 void		calculate_wall(t_game *game);
+void		calculate_texture(t_game *game);
 void		raycasting(t_game *game);
 
 //movement

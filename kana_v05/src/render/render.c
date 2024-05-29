@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 11:28:33 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:28:28 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	render_frame(t_game *game)
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->image.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->mmap.img, 0, 0);
 	mlx_destroy_image(game->mlx_ptr, game->image.img_ptr);
 }
 
@@ -71,6 +72,7 @@ int	render_game(t_game *game)
 	game->player.has_moved = handle_movement(game);
 	if (!game->player.has_moved)
 		return (0);
+	render_minimap(game);
 	render_frame(game);
 	game->player.has_moved = 0;
 	return (0);
@@ -78,6 +80,7 @@ int	render_game(t_game *game)
 
 void	initial_render(t_game *game)
 {
+	
 	render_frame(game);
-//	render_minimap(game);
+	render_minimap(game);
 }

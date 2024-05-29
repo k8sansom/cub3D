@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 12:00:52 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:13:43 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	init_mlx(t_game *game)
 	game->win_ptr = mlx_new_window(game->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	if (!game->win_ptr)
 		full_exit("Error: initializing mlx", game, MLX_ERR);
-	// 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
-	// 		WIN_HEIGHT / 2);
+	mlx_mouse_move(game->mlx_ptr, game->win_ptr, WIN_WIDTH / 2,
+	 	WIN_HEIGHT / 2);
 }
 
 static void	init_textures(t_textures *textures)
@@ -66,7 +66,8 @@ void	init_game(t_game *game)
 	ft_memset(game, 0, sizeof(t_game));
 	init_player(&game->player);
 	init_textures(&game->textures);
-//	init_minimap(&game);
+//	init_minimap(game);
 	ft_memset(&game->ray, 0, sizeof(t_ray));
 	ft_memset(&game->mmap, 0, sizeof(t_mmap));
+	ft_memset(&game->wall, 0, sizeof(t_wall));
 }

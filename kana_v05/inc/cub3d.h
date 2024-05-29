@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 10:56:33 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:34:42 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ void		raycasting(t_game *game);
 //movement
 int			handle_movement(t_game *game);
 int			handle_rotation(t_game *game, double rotdir);
-bool		is_wall(t_game *game, double x, double y);
+bool		is_wall(t_game *game, int x, int y);
 int			valid_move(t_game *game, double x, double y);
 
 //draw walls

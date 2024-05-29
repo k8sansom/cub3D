@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/27 17:39:47 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:27:02 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	draw_vertical_line(t_game *game, int x)
 	int	y;
 	int	color;
 
-	color = get_wall_color(game);
 	y = game->ray.draw_start;
 	while (y <= game->ray.draw_end)
 	{
+		color = get_wall_color(game);
 		set_pixel(game, x, y, color);
 		y++;
 	}

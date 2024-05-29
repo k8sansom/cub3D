@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 11:05:14 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:28:33 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	render_frame(t_game *game)
+/*void	render_frame(t_game *game)
 {
 	int	x;
 	int	y;
 
 	init_image(game, &game->image, WIN_WIDTH, WIN_HEIGHT);
 	init_tex_pix(game);
-//	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	raycasting(game);
 	y = -1;
 	while (++y < WIN_HEIGHT)
@@ -29,6 +28,40 @@ void	render_frame(t_game *game)
 			set_frame_pix(game, &game->image, x, y);
 	}
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+		game->image.img_ptr, 0, 0);
+	mlx_destroy_image(game->mlx_ptr, game->image.img_ptr);
+}*/
+
+void	render_floor_and_ceiling(t_game *game)
+{
+	int		y;
+	int		x;
+	size_t	color;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		if (y < WIN_HEIGHT / 2)
+			color = game->textures.hex_ceiling;
+		else
+			color = game->textures.hex_floor;
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			set_pixel(game, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	render_frame(t_game *game)
+{
+	init_image(game, &game->image, WIN_WIDTH, WIN_HEIGHT);
+	render_floor_and_ceiling(game);
+	init_tex_pix(game);
+	raycasting(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->image.img_ptr, 0, 0);
 	mlx_destroy_image(game->mlx_ptr, game->image.img_ptr);
 }

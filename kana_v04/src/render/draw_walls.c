@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/27 17:39:47 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:13:43 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_wall_color(t_game *game)
 	else if (game->ray.orientation == EA)
 		return (0x0000FF/*game->texture_arr[EA]*/);
 	else if (game->ray.orientation == WE)
-		return (0xFFFF00/*game->texture_arr[WE]*/);
+		return (game->texture_arr[WE]);
 	else
 		return (0xFFFFFF);
 }

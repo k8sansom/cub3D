@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 11:09:18 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:34:08 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	init_raycasting(t_game *game, int current_x)
 	game->ray.dir_y = game->player.dir_y + game->player.plane_y * camera_x;
 	game->ray.delta_dist_x = fabs(1 / game->ray.dir_x);
 	game->ray.delta_dist_y = fabs(1 / game->ray.dir_y);
-	game->ray.pos_x = game->player.pos_x;
-	game->ray.pos_y = game->player.pos_y;
+	game->ray.pos_x = (int)game->player.pos_x;
+	game->ray.pos_y = (int)game->player.pos_y;
 }
 
 void	set_steps(t_game *game)

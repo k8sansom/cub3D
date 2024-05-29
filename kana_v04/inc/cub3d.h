@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 14:46:32 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:08:20 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ typedef struct s_ray
 	int		current_column;
 	double	wall_dist;
 	double	wall_pos;
-	double	pos_x;
-	double	pos_y;
+	int		pos_x;
+	int		pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	delta_dist_x;
@@ -218,7 +218,7 @@ void		raycasting(t_game *game);
 //movement
 int			handle_movement(t_game *game);
 int			handle_rotation(t_game *game, double rotdir);
-bool		is_wall(t_game *game, double x, double y);
+bool		is_wall(t_game *game, int x, int y);
 int			valid_move(t_game *game, double x, double y);
 
 //draw walls

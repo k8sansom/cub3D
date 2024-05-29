@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:32:34 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/27 17:49:17 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:55:21 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,9 @@ void	wall_orientation(t_game *game)
 	}
 }
 
-bool	is_wall(t_game *game, double x, double y)
+bool	is_wall(t_game *game, int x, int y)
 {
-	int	i_x;
-	int	i_y;
-
-	i_x = (int)x;
-	i_y = (int)y;
-	if (i_x >= 0 && i_x < game->map_width && i_y >= 0 && i_y < game->map_height)
-		return (game->map[i_y][i_x] == '1');
-	return (true);
-}
-
-bool	is_valid_pos(t_game *game, double x, double y)
-{
-	int	i_x;
-	int	i_y;
-
-	i_x = (int)x;
-	i_y = (int)y;
-	if (i_x < 0.25 || i_x >= (game->map_width - 1.25)
-		|| i_y < 0.25 || i_y > (game->map_height - 0.25))
-		return (false);
-	if (is_wall(game, x, y))
-		return (false);
-	return (true);
+	if (x >= 0 && x < game->map_width && y >= 0 && y < game->map_height)
+		return (game->map[y][x] == '1');
+	return (false);
 }

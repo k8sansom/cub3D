@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   valid_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:38:18 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 15:19:41 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:00:32 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static bool	is_valid_pos(t_game *game, double x, double y)
+bool	is_valid_pos(t_game *game, double x, double y)
 {
 	if (x < 0.25 || x >= game->map_width - 1.25)
 		return (false);
 	if (y < 0.25 || y >= game->map_height - 0.25)
 		return (false);
-	if (game->map[(int)y][(int)x] == '1')
+	if (is_wall(game, (int)x, (int)y))
 		return (false);
 	return (true);
 }

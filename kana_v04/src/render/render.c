@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 15:14:17 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:04:38 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	render_game(t_game *game)
 	if (!game->player.has_moved)
 	 	return (0);
 	render_frame(game);
-//	render_minimap(game);
+	render_minimap(game);
 	game->player.has_moved = 0;
 	return (0);
 }
@@ -61,6 +61,5 @@ int	render_game(t_game *game)
 void	initial_render(t_game *game)
 {
 	render_frame(game);
-	
-//	render_minimap(game);
+	render_minimap(game);
 }

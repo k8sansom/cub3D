@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 14:28:28 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:32:16 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-/*void	render_frame(t_game *game)
-{
-	int	x;
-	int	y;
-
-	init_image(game, &game->image, WIN_WIDTH, WIN_HEIGHT);
-	init_tex_pix(game);
-	raycasting(game);
-	y = -1;
-	while (++y < WIN_HEIGHT)
-	{
-		x = -1;
-		while (++x < WIN_WIDTH)
-			set_frame_pix(game, &game->image, x, y);
-	}
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-		game->image.img_ptr, 0, 0);
-	mlx_destroy_image(game->mlx_ptr, game->image.img_ptr);
-}*/
 
 void	render_floor_and_ceiling(t_game *game)
 {
@@ -59,7 +39,6 @@ void	render_frame(t_game *game)
 {
 	init_image(game, &game->image, WIN_WIDTH, WIN_HEIGHT);
 	render_floor_and_ceiling(game);
-	init_tex_pix(game);
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->image.img_ptr, 0, 0);

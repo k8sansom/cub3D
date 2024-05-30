@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:54 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 13:19:28 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 11:18:24 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	set_hooks(t_game *game)
 	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, quit_game, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, key_release, game);
+}
 //	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, use_mouse, game);
 //	mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
-}

@@ -1,7 +1,7 @@
-NO textures/wolfenstein/grey_stone.xpm
-SO textures/wolfenstein/purple_stone.xpm
-WE textures/wolfenstein/red_brick.xpm
-EA textures/wolfenstein/wood.xpm
+NO textures/kana/white_brick.xpm
+SO textures/kana/red_brick.xpm
+WE textures/kana/purple.xpm
+EA textures/kana/gold_brick.xpm
 
 F 220,100,0
 C 225,30,0

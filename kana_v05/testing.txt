@@ -1,0 +1,28 @@
+not working:
+
+working:
+valgrind ./cub3d maps/bad/color_missing_ceiling_rgb.cub
+valgrind ./cub3d maps/bad/color_missing_floor_rgb.cub
+valgrind ./cub3d maps/bad/color_missing.cub
+valgrind ./cub3d maps/bad/empty.cub
+valgrind ./cub3d maps/bad/file_letter_end.cub
+valgrind ./cub3d maps/bad/forbidden.cub 
+valgrind ./cub3d maps/bad/map_first.cub 
+valgrind ./cub3d maps/bad/map_middle.cub
+valgrind ./cub3d maps/bad/map_missing.cub
+valgrind ./cub3d maps/bad/map_only.cub
+valgrind ./cub3d maps/bad/map_too_small.cub
+valgrind ./cub3d maps/bad/player_multiple.cub 
+valgrind ./cub3d maps/bad/player_none.cub 
+valgrind ./cub3d maps/bad/player_on_edge.cub 
+valgrind ./cub3d maps/bad/textures_dir.cub
+valgrind ./cub3d maps/bad/textures_duplicates.cub
+valgrind ./cub3d maps/bad/textures_invalid.cub
+valgrind ./cub3d maps/bad/textures_missing.cub
+valgrind ./cub3d maps/bad/textures_none.cub 
+valgrind ./cub3d maps/bad/textures_not_xpm.cub
+valgrind ./cub3d maps/bad/wall_hole_east.cub
+valgrind ./cub3d maps/bad/wall_hole_north.cub 
+valgrind ./cub3d maps/bad/wall_hole_south.cub 
+valgrind ./cub3d maps/bad/wall_hole_west.cub 
+valgrind ./cub3d maps/bad/wall_none.cub

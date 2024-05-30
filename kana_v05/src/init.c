@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:46:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 14:13:43 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:43:46 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	init_game(t_game *game)
 	ft_memset(game, 0, sizeof(t_game));
 	init_player(&game->player);
 	init_textures(&game->textures);
+	game->cub = (char **)malloc(sizeof(char *));
+	if (!game->cub)
+		full_exit("Error: malloc", game, MALLOC_ERR);
+	game->cub[0] = NULL;
 //	init_minimap(game);
 	ft_memset(&game->ray, 0, sizeof(t_ray));
 	ft_memset(&game->mmap, 0, sizeof(t_mmap));

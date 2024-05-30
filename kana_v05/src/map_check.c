@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:15:50 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 11:50:44 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:59:23 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ static void	check_at_end(t_game *game)
 		if (game->map[i][j] && game->map[i][j] == '0')
 			full_exit("Error: missing external walls!", game, MAP_ERR);
 		else if (game->map[i][j] && game->map[i][j] != '1')
+		{
 			full_exit("Error: map not at end of file", game, MAP_ERR);
+		}
 		i++;
 	}
 }

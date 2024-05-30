@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:44:42 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 14:39:14 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:32:09 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,3 @@ int	handle_movement(t_game *game)
 		moved += handle_rotation(game, game->player.rotate);
 	return (moved);
 }
-

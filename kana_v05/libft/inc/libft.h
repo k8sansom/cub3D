@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:50:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/24 11:14:46 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:24:22 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <stdarg.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024

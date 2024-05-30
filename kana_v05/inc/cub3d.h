@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/30 11:32:25 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:24:02 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_mmap
 {
 	int		bits_per_pix;
 	int		line_length;
-	int		endian; // Pixel endianess (0: little endian, 1: big endian)
+	int		endian;
 	void	*img;
 	char	*addr;
 	int		view_dist;

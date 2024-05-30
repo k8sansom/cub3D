@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/30 12:49:58 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:28:14 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	finalize_map_dimensions(t_game *game)
 
 	game->map_height = 0;
 	game->map_width = 0;
-
 	while (game->map[game->map_height])
 	{
 		current_length = ft_strlen(game->map[game->map_height]);

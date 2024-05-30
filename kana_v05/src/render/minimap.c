@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:06:58 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 14:29:03 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:34:49 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 int	get_mmap_offset(t_mmap mmap, int mapsize, int pos)
 {
@@ -73,8 +72,10 @@ void	render_minimap(t_game *game)
 	int	y;
 
 	y = 0;
-	game->mmap.off_x = get_mmap_offset(game->mmap, game->map_width, game->player.pos_x);
-	game->mmap.off_y = get_mmap_offset(game->mmap, game->map_height, game->player.pos_y);
+	game->mmap.off_x = get_mmap_offset(game->mmap, \
+		game->map_width, game->player.pos_x);
+	game->mmap.off_y = get_mmap_offset(game->mmap, \
+		game->map_height, game->player.pos_y);
 	while (y < game->mmap.size)
 	{
 		x = 0;

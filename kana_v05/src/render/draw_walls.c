@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 14:03:52 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:34:17 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	draw_vertical_line(t_game *game, int x)
 	int		location;
 
 	y = game->wall.draw_start;
-
 	while (y <= game->wall.draw_end)
 	{
 		game->wall.tex_y = ((int)game->wall.tex_pos) % TILE_SIZE;
@@ -49,4 +48,3 @@ int	get_wall_color(t_game *game, int location)
 		return (0xFFFFFF);
 	return (game->texture_arr[game->wall.orientation][location]);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:49:11 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/30 11:32:16 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:33:21 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	render_game(t_game *game)
 
 void	initial_render(t_game *game)
 {
-	
 	render_frame(game);
 	render_minimap(game);
 }

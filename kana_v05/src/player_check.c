@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:27:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/28 10:49:21 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:31:29 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	flood_fill(t_game *temp, int y, int x)
 {
 	if (temp->map[y][x] == '1' || y > (temp->map_height - 1) || y < 0 || \
-		x > (int)(ft_strlen(temp->map[y]) - 2 ) || x < 0 )
+		x > (int)(ft_strlen(temp->map[y]) - 2) || x < 0)
 		return ;
 	if (temp->map[y][x] == '0')
 		temp->move_counter++;

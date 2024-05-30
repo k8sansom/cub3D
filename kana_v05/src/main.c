@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:19:32 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/29 14:16:46 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:30:58 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	main(int ac, char **av)
 	set_hooks(&game);
 	mlx_loop_hook(game.mlx_ptr, render_game, &game);
 	mlx_loop(game.mlx_ptr);
-//	full_exit("all done", &game, NO_ERR);
+	full_exit("all done", &game, NO_ERR);
 	return (0);
 }

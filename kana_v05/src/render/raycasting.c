@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/29 14:07:22 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:33:09 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	set_steps(t_game *game)
 		game->ray.side_dist_y = (game->ray.pos_y + 1.0 - game->player.pos_y)
 			* game->ray.delta_dist_y;
 	}
-
 }
 
 void	perform_dda(t_game *game)

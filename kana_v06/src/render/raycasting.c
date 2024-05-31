@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:51:22 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/31 12:48:49 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:07:50 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	perform_dda(t_game *game)
 			|| game->ray.pos_y > game->map_height - 0.25
 			|| game->ray.pos_x > game->map_width - 1.25)
 			break ;
-		if (is_wall(game, (int)floor(game->ray.pos_x), (int)floor(game->ray.pos_y)))
+		if (is_wall(game, (int)floor(game->ray.pos_x), \
+			(int)floor(game->ray.pos_y)))
 			game->ray.hit_wall = true;
 	}
 }

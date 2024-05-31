@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/31 13:00:24 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:04:19 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ typedef struct s_mmap
 	void	*img;
 	char	*addr;
 	int		view_dist;
-	int		size;
+	int		width;
+	int		height;
 	int		tile_size;
 	int		off_x;
 	int		off_y;
+	int		map_x;
+	int		map_y;
 }	t_mmap;
 
 typedef struct s_ray

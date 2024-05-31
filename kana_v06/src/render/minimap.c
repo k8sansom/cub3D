@@ -6,24 +6,14 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:06:58 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/31 14:36:12 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:06:38 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	get_mmap_offset(t_mmap mmap, int mapsize, int pos)
-{
-	if (pos > mmap.view_dist && mapsize - pos > mmap.view_dist + 1)
-		return (pos - mmap.view_dist);
-	if (pos > mmap.view_dist && mapsize - pos <= mmap.view_dist + 1)
-		return (mapsize - mmap.size);
-	return (0);
-}
-
 void	draw_minimap_tile(t_game *game, int x, int y)
 {
-	printf("draw tile\n");
 	int		base_x;
 	int		base_y;
 	int		color;
@@ -32,16 +22,20 @@ void	draw_minimap_tile(t_game *game, int x, int y)
 	base_x = x * game->mmap.tile_size;
 	base_y = y * game->mmap.tile_size;
 	color = MMAP_WALL;
-	int map_x = x + game->mmap.off_x;
-	int map_y = y + game->mmap.off_y;
-	if (map_y <= game->map_height && map_x < game->map_width)
+	game->mmap.map_x = x + game->mmap.off_x;
+	game->mmap.map_y = y + game->mmap.off_y;
+	if (game->mmap.map_x >= 0 && game->mmap.map_x < game->map_width \
+		&& game->mmap.map_y >= 0 && game->mmap.map_y < game->map_height)
 	{
-		tile = game->map[map_y][map_x];
-		if ((int)game->player.pos_x == map_x && (int)game->player.pos_y == map_y)
+		tile = game->map[game->mmap.map_y][game->mmap.map_x];
+		if ((int)game->player.pos_x == game->mmap.map_x \
+			&& (int)game->player.pos_y == game->mmap.map_y)
 			color = MMAP_PLAYER;
 		else if (tile == '1')
 			color = MMAP_WALL;
 		else if (tile == '0')
+			color = MMAP_FLOOR;
+		else if (tile == 'S' || tile == 'N' || tile == 'W' || tile == 'E')
 			color = MMAP_FLOOR;
 	}
 	set_tile_pixels(game, base_x, base_y, color);
@@ -74,15 +68,10 @@ void	render_minimap(t_game *game)
 	int	y;
 
 	y = 0;
-	printf("render\n");
-	game->mmap.off_x = get_mmap_offset(game->mmap, \
-		game->map_width, game->player.pos_x);
-	game->mmap.off_y = get_mmap_offset(game->mmap, \
-		game->map_height, game->player.pos_y);
-	while (y < game->mmap.size)
+	while (y < game->mmap.height)
 	{
 		x = 0;
-		while (x < game->mmap.size)
+		while (x < game->mmap.width)
 		{
 			draw_minimap_tile(game, x, y);
 			x++;
@@ -97,14 +86,16 @@ void	init_minimap(t_game *game)
 	int	height;
 
 	game->mmap.view_dist = 10;
-	game->mmap.size = (2 * game->mmap.view_dist) + 1;
-	game->mmap.tile_size = 5;
-	game->mmap.off_x = get_mmap_offset(game->mmap, game->map_width,
-			game->player.pos_x);
-	game->mmap.off_y = get_mmap_offset(game->mmap, game->map_height,
-			game->player.pos_y);
-	width = game->mmap.size * game->mmap.tile_size;
-	height = game->mmap.size * game->mmap.tile_size;
+	game->mmap.width = game->map_width;
+	game->mmap.height = game->map_height;
+	if (game->map_width * (TILE_SIZE / 8) > WIN_WIDTH)
+		game->mmap.tile_size = TILE_SIZE / 16;
+	else if (game->map_height * (TILE_SIZE / 8) > WIN_HEIGHT)
+		game->mmap.tile_size = TILE_SIZE / 16;
+	else
+		game->mmap.tile_size = TILE_SIZE / 8;
+	width = game->mmap.width * game->mmap.tile_size;
+	height = game->mmap.height * game->mmap.tile_size;
 	game->mmap.img = mlx_new_image(game->mlx_ptr, width, height);
 	if (!game->mmap.img)
 		full_exit("Failed to create a minimap image\n", game, 0);

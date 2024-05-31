@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:27:24 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/30 13:31:29 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 13:11:51 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	check_player_position(t_game *game)
 		{
 			if (ft_strchr("NSEW", game->map[i][j]))
 			{
-				game->player.pos_x = j;
-				game->player.pos_y = i;
+				game->player.pos_x = j + 0.5;
+				game->player.pos_y = i + 0.5;
 				game->player.dir = game->map[i][j];
 			}
 			j++;

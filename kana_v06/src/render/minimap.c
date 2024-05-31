@@ -6,7 +6,7 @@
 /*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:06:58 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/31 11:58:27 by avoronko         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:36:12 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_mmap_offset(t_mmap mmap, int mapsize, int pos)
 
 void	draw_minimap_tile(t_game *game, int x, int y)
 {
+	printf("draw tile\n");
 	int		base_x;
 	int		base_y;
 	int		color;
@@ -30,12 +31,13 @@ void	draw_minimap_tile(t_game *game, int x, int y)
 
 	base_x = x * game->mmap.tile_size;
 	base_y = y * game->mmap.tile_size;
-	color = MMAP_OTHER;
-	if ((y + game->mmap.off_y) < game->map_height
-		&& (x + game->mmap.off_x) < game->map_width)
+	color = MMAP_WALL;
+	int map_x = x + game->mmap.off_x;
+	int map_y = y + game->mmap.off_y;
+	if (map_y <= game->map_height && map_x < game->map_width)
 	{
-		tile = game->map[y + game->mmap.off_y][x + game->mmap.off_x];
-		if (tile == 'S' || tile == 'N' || tile == 'E' || tile == 'W')
+		tile = game->map[map_y][map_x];
+		if ((int)game->player.pos_x == map_x && (int)game->player.pos_y == map_y)
 			color = MMAP_PLAYER;
 		else if (tile == '1')
 			color = MMAP_WALL;
@@ -72,6 +74,7 @@ void	render_minimap(t_game *game)
 	int	y;
 
 	y = 0;
+	printf("render\n");
 	game->mmap.off_x = get_mmap_offset(game->mmap, \
 		game->map_width, game->player.pos_x);
 	game->mmap.off_y = get_mmap_offset(game->mmap, \

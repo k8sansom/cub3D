@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:20:29 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/30 13:34:17 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 12:48:29 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	set_pixel(t_game *game, int x, int y, int color)
 
 void	draw_vertical_line(t_game *game, int x)
 {
-	int		y;
-	int		color;
-	int		location;
+	double		y;
+	int			color;
+	int			location;
 
 	y = game->wall.draw_start;
 	while (y <= game->wall.draw_end)

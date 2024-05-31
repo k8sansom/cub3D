@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player_dir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:45:36 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/28 10:03:35 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 12:07:21 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void	init_west(t_game *game)
 {
 	game->player.dir_x = -1;
 	game->player.dir_y = 0;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = -0.66;
 }
 
 static void	init_east(t_game *game)
 {
 	game->player.dir_x = 1;
 	game->player.dir_y = 0;
-	game->player.plane_x = 0.66;
-	game->player.plane_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0.66;
 }
 
 void	init_player_dir(t_game *game)

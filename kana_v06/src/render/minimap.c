@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:06:58 by avoronko          #+#    #+#             */
-/*   Updated: 2024/05/30 13:34:49 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 11:58:27 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void	init_minimap(t_game *game)
 	int	width;
 	int	height;
 
-	game->mmap.view_dist = 5;
+	game->mmap.view_dist = 10;
 	game->mmap.size = (2 * game->mmap.view_dist) + 1;
-	game->mmap.tile_size = 10;
+	game->mmap.tile_size = 5;
 	game->mmap.off_x = get_mmap_offset(game->mmap, game->map_width,
 			game->player.pos_x);
 	game->mmap.off_y = get_mmap_offset(game->mmap, game->map_height,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avoronko <avoronko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/31 10:23:15 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 12:47:39 by avoronko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,16 @@ typedef struct s_ray
 
 typedef struct s_wall
 {
-	int		orientation;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	bool	vertical_wall;
-	int		tex_x;
-	int		tex_y;
-	double	wall_dist;
-	double	step;
-	double	tex_pos;
+	int			orientation;
+	double		line_height;
+	double		draw_start;
+	double		draw_end;
+	bool		vertical_wall;
+	double		tex_x;
+	double		tex_y;
+	double		wall_dist;
+	double		step;
+	double		tex_pos;
 }	t_wall;
 
 typedef struct s_textures

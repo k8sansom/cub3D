@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:17:30 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/30 13:24:02 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 10:23:15 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,8 @@ void		read_map(t_game *game);
 void		check_map(t_game *game);
 void		init_player_dir(t_game *game);
 void		check_player_position(t_game *game);
+void		finalize_map_dimensions(t_game *game);
+void		make_map_square(t_game *game);
 
 //controls
 void		set_hooks(t_game *game);

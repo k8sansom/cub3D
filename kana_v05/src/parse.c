@@ -6,7 +6,7 @@
 /*   By: ksansom <ksansom@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:16:28 by ksansom           #+#    #+#             */
-/*   Updated: 2024/05/30 13:28:14 by ksansom          ###   ########.fr       */
+/*   Updated: 2024/05/31 10:09:57 by ksansom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,6 @@ void	read_cub(t_game *game, char *cub)
 		full_exit("Error: cub file is empty", game, CUB_ERR);
 }
 
-void	finalize_map_dimensions(t_game *game)
-{
-	int	current_length;
-
-	game->map_height = 0;
-	game->map_width = 0;
-	while (game->map[game->map_height])
-	{
-		current_length = ft_strlen(game->map[game->map_height]);
-		if (current_length > game->map_width)
-			game->map_width = current_length;
-		game->map_height++;
-	}
-}
-
 void	parse_file(t_game *game, char *cub)
 {
 	read_cub(game, cub);
@@ -88,4 +73,5 @@ void	parse_file(t_game *game, char *cub)
 	read_map(game);
 	check_map(game);
 	finalize_map_dimensions(game);
+	make_map_square(game);
 }
